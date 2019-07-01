@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--link rel="icon" href="img/logo/androidk.ico"-->
+    <title>Horario FI</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Petit+Formal+Script" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/horario.css">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Horario FI</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/rhofp/horario-fi">Acerca de </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+          <form class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+              <input class="form-control" placeholder="Clave asignatura">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+          </form>
+
+          <div class="card border-primary">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                    <p class="card-text"> <b>Gpo. 1 </b>  DR. GUILLERMO GILBERTO MOLERO CASTILLO</p>
+                </div>
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-primary">Agregar</a>
+                </div>
+              </div>
+              <p class="card-text"><b>Horario:</b> 11:00 - 13:00 &nbsp; <b>Días: </b> Mar, Jue</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-8 table-responsive" id="schedule-table">
+        </div>  
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Open source project. Feel free to contribute. </p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/loadTable.js"></script>
+    <script src="js/TimeClass.js"></script>
+  </body>
+
+</html>
