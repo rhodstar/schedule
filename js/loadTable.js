@@ -35,4 +35,5 @@ window.onload =() => {
 
     output += ` </tbody> </table>`; 
     document.getElementById("schedule-table").innerHTML = output;
+
 }

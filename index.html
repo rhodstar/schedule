@@ -44,24 +44,11 @@
         <div class="col-sm-12 col-md-4">
           <form class="form-inline">
             <div class="form-group mx-sm-3 mb-2">
-              <input class="form-control" placeholder="Clave asignatura">
+              <input class="form-control" placeholder="Clave asignatura" id="subjectkey">
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+            <button class="btn btn-primary mb-2" onclick="loadSubjects()">Buscar</button>
           </form>
-
-          <div class="card border-primary">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-8">
-                    <p class="card-text"> <b>Gpo. 1 </b>  DR. GUILLERMO GILBERTO MOLERO CASTILLO</p>
-                </div>
-                <div class="col-md-4">
-                    <a href="#" class="btn btn-primary">Agregar</a>
-                </div>
-              </div>
-              <p class="card-text"><b>Horario:</b> 11:00 - 13:00 &nbsp; <b>Días: </b> Mar, Jue</p>
-            </div>
-          </div>
+          <div id="list-subjects"> </div>  
         </div>
         <div class="col-sm-12 col-md-8 table-responsive" id="schedule-table">
         </div>  
@@ -83,6 +70,8 @@
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script src="js/loadTable.js"></script>
+    <script src="js/loadSubjects.js"></script>
+    <script src="js/subjectsData.js"></script>
     <script src="js/TimeClass.js"></script>
   </body>
 
