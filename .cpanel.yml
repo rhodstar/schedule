@@ -1,6 +1,6 @@
 ---
-deployment
-tasks:
-        - export DEPLOYPATH=/home/ludomat2/public_html/
-        - /bin/cp index.html $DEPLOYPATH
+deployment:
+        tasks:
+                - export DEPLOYPATH=/home/ludomat2/public_html/
+                - /bin/cp index.html $DEPLOYPATH
 
