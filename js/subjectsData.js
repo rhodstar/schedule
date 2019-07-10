@@ -1,45 +1,54 @@
 const sub406 = {
     clave : 406,
+    materia: "Inteligencia Artificial",
     grupos : [{
         gpo: 1,
         profesor : 'DR. GUILLERMO GILBERTO MOLERO CASTILLO',
-        horario : '11:00 a 13:00',
-        dias: 'Mar, Jue'
+        horario_ini : new MyTime(11,0),
+        horario_fin : new MyTime(13,0),
+        dias: [days.Lun,days.Mar]
     },{
         gpo: 2,
         profesor : 'ING. JORGE ALBERTO HERNANDEZ NIETO',
-        horario : '15:00 a 17:00',
-        dias: 'Lun, Mie'
+        horario_ini : new MyTime(15,0),
+        horario_fin : new MyTime(17,0),
+        dias: [days.Lun,days.Mie]
     },{
         gpo: 3,
         profesor : 'DR. ISMAEL EVERARDO BARCENAS PATIÑO',
-        horario : '14:00 a 16:00',
-        dias: 'Mar, Jue'
+        horario_ini : new MyTime(14,0),
+        horario_fin : new MyTime(16,0),
+        dias: [days.Mar,days.Jue]
     },{
         gpo: 4,
         profesor : 'DRA. MARIA DEL CARMEN EDNA MARQUEZ MARQUEZ',
-        horario : '16:00 a 18:00',
-        dias: 'Mar, Jue'
+        horario_ini : new MyTime(16,0),
+        horario_fin : new MyTime(18,0),
+        dias: [days.Mar,days.Jue]
     }]
 }
 
 const sub434 = {
     clave : 434,
+    materia: "Compiladores",
     grupos : [{
         gpo: 1,
         profesor : 'ING. ADRIAN ULISES MERCADO MARTINEZ',
-        horario : '13:00 a 15:00',
-        dias: 'Lun, Mie'
+        horario_ini : new MyTime(13,0),
+        horario_fin : new MyTime(15,0),
+        dias: [days.Lun,days.Mie]
     },{
         gpo: 2,
         profesor : 'ING. SERGIO VALDEZ SANCHEZ',
-        horario : '16:00 a 18:00',
-        dias: 'Mar, Jue'
+        horario_ini : new MyTime(16,0),
+        horario_fin : new MyTime(18,0),
+        dias: [days.Mar,days.Jue]
     },{
         gpo: 3,
         profesor : 'ING. NORBERTO JESUS ORTIGOZA MARQUEZ',
-        horario : '15:00 a 17:00',
-        dias: 'Mar, Jue'
+        horario_ini : new MyTime(15,0),
+        horario_fin : new MyTime(17,0),
+        dias: [days.Mar,days.Jue]
     }]
 }
 
@@ -52,4 +61,11 @@ const searchSubject = (clave) => {
             return index;
     }
     return -1;
+}
+const subject = (clave) => {
+    for (let index = 0 ; index < misMaterias.length; index++ ){
+        if (misMaterias[index].clave == clave)
+            return misMaterias[index].materia;
+    }
+    return "";
 }

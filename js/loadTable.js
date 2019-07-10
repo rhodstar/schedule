@@ -21,13 +21,10 @@ window.onload =() => {
 
     for (let i = 0; i < 60; i++) {
         output += `<tr><td>`;
-        initTime.hours < 10 ?  output += "0" :{}
-        output += initTime.hours + `:` ;        
-        initTime.minutes == 0 ? output += "0" :{}
-        output+= initTime.minutes + `</td>`;
+        output+= initTime + `</td>`;
         
         initTime.sum15minutes();
-        for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
             output += `<td></td>`      
         }
         output += `</tr>`;

@@ -14,11 +14,11 @@ const loadSubjects = ()=>{
             output += grupo.gpo+ `</b> `+ grupo.profesor+ `</p>
                 </div>
                 <div class="col-md-4">
-                    <a href="#" class="btn btn-primary">Agregar</a>
+                <button class="btn btn-primary mb-2" type="button" onclick="searchCell()" id="">Agregar</button>
                 </div>
             </div>
             <p class="card-text"><b>`;
-            output +=`Horario:</b> ` + grupo.horario + `&nbsp; <b>Días: </b>` + grupo.dias +`</p></div></div>`;
+            output +=`Horario:</b> ` + grupo.horario_ini +` a ` +grupo.horario_fin + `&nbsp; <b>Días: </b>` + p_days(grupo.dias) +`</p></div></div>`;
         }  
     }else{
         output += `
