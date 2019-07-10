@@ -1,12 +1,8 @@
 # Horario FI
 ```shell
-2019, julio
+julio, 2019
 ```
-
-## Autores
-
-* Francisco Pablo Rodrigo
-* Universidad Nacional Autónoma de México
+Universidad Nacional Autónoma de México
 
 ## Tecnologías
 
