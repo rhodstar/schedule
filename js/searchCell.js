@@ -1,13 +1,7 @@
-const searchCell = ()=>{
-    let grupo = {
-        gpo: 1,
-        profesor : 'ING. ADRIAN ULISES MERCADO MARTINEZ',
-        horario_ini : new MyTime(13,0),
-        horario_fin : new MyTime(15,0),
-        dias: [days.Lun,days.Mie]
-    }
+const searchCell = (k,g)=>{
+    let grupo = searchGroup(k,g);
 
-    let materia = "Compiladores";
+    let materia = searchSubjectName(k);
 
     placeSubject(materia,grupo);
 }
@@ -32,9 +26,13 @@ const placeSubject = (materia,grupo)=>{
     let td = tr[verticalOffset].getElementsByTagName("td");
 
     for (const dia of grupo.dias) {
+        td[dia].style.backgroundColor = "blue"; 
         td[dia].innerHTML =`
-        <h5>`+ materia +`</h5>
-        grupo: `+ grupo.gpo;
+        <div class="p-2 text-center">
+            <h6>`+ materia +`</h6>
+            <p>`+ grupo.profesor+`</p>
+            <p>grupo `+ grupo.gpo+`</p>
+        </div>`;
         
         td[dia].rowSpan = subjOffset;      
     }

@@ -62,10 +62,23 @@ const searchSubject = (clave) => {
     }
     return -1;
 }
-const subject = (clave) => {
+const searchSubjectName = (clave) => {
     for (let index = 0 ; index < misMaterias.length; index++ ){
         if (misMaterias[index].clave == clave)
             return misMaterias[index].materia;
     }
     return "";
+}
+
+const searchGroup= (keysub,g) => {
+    for (const materia of misMaterias) {
+        if (materia.clave == keysub){
+            for (const grupo of materia.grupos) {
+                if (grupo.gpo == g)
+                    return grupo;
+            }
+        }
+    }
+
+    return null;
 }
