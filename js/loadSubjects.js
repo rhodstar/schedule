@@ -1,4 +1,4 @@
-const loadSubjects = ()=>{
+const loadSubjects = () => {
     const keysub = document.getElementById("subjectkey").value;   
     indexSubject = searchSubject(keysub);
     var output = ""; 
