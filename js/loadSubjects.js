@@ -13,7 +13,7 @@ const loadSubjects = ()=>{
                     <p class="card-text"> <b>Gpo.`;
             output += grupo.gpo+ `</b> `+ grupo.profesor+ `</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 text-right">
                 <button class="btn btn-primary mb-2" type="button" onclick="searchCell(`+keysub+`,`+grupo.gpo+`)" id="">Agregar</button>
                 </div>
             </div>
