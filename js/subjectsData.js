@@ -1,6 +1,6 @@
 const sub406 = {
     clave : 406,
-    materia: "Inteligencia Artificial",
+    materia: "INTELIGENCIA ARTIFICIAL",
     grupos : [{
         gpo: 1,
         profesor : 'DR. GUILLERMO GILBERTO MOLERO CASTILLO',
@@ -30,7 +30,7 @@ const sub406 = {
 
 const sub434 = {
     clave : 434,
-    materia: "Compiladores",
+    materia: "COMPILADORES",
     grupos : [{
         gpo: 1,
         profesor : 'ING. ADRIAN ULISES MERCADO MARTINEZ',
@@ -52,8 +52,38 @@ const sub434 = {
     }]
 }
 
+const sub1644 = {
+    clave : 1644,
+    materia: "BASE DE DATOS",
+    grupos : [{
+        gpo: 1,
+        profesor : 'ING. LUCILA PATRICIA ARELLANO MENDOZA',
+        horario_ini : new MyTime(11,0),
+        horario_fin : new MyTime(13,0),
+        dias: [days.Lun,days.Mie,days.Vie]
+    },{
+        gpo: 2,
+        profesor : 'ING. MARTHA LOPEZ PELCASTRE',
+        horario_ini : new MyTime(13,0),
+        horario_fin : new MyTime(15,0),
+        dias: [days.Lun,days.Mie,days.Vie]
+    },{
+        gpo: 3,
+        profesor : 'ING. JORGE ALBERTO RODRIGUEZ CAMPOS',
+        horario_ini : new MyTime(7,0),
+        horario_fin : new MyTime(9,0),
+        dias: [days.Mar,days.Jue,days.Vie]
+    },{
+        gpo: 4,
+        profesor : 'M.C. DAVID RICARDO RUIZ REYES',
+        horario_ini : new MyTime(17,0),
+        horario_fin : new MyTime(19,0),
+        dias: [days.Mar,days.Mie,days.Jue]
+    }]
+}
+
 //Esto se sustituye por una consulta a la BD;
-const misMaterias = [sub406,sub434]  
+const misMaterias = [sub406,sub434,sub1644]  
 
 const searchSubject = (clave) => {
     for (let index = 0 ; index < misMaterias.length; index++ ){

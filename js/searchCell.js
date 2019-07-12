@@ -26,7 +26,6 @@ const searchCell = (k,g) => {
             <p>${grupo.profesor} </p>
             <p>grupo ${grupo.gpo} </p>
         </div>`;
-        
         td[dia].rowSpan = subjOffset;      
     }
 
