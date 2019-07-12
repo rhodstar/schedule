@@ -5,21 +5,33 @@ class MyTime{
         this.minutes = minutes;
     }
 
-    sum15minutes() {
-        let newMinutes = this.minutes + 15 ;
-        if( newMinutes >= 60){
-            newMinutes -= 60;
-            this.hours++;
-            if (this.hours >= 24)
-                this.hours = 0;
-        }
-        this.minutes = newMinutes;
-    }
 }
 
-const timeSubtraction = (time1, time2) =>{
-    let hours = time1.hours - time2.hours
-    let minutes = time1.minutes - time2.minutes
+const isTimeEquals = (t1, t2) => {
+
+    if ( t1.hours == t2.hours && 
+        t1.minutes == t2.minutes)
+        return true;
+    return false;    
+}
+
+const timeSum = (t1,t2) => {
+    let h = t1.hours + t2.hours;
+    let m = t1.minutes + t2.minutes;
+
+    if( m >= 60){
+        m -= 60;
+        h++;
+    }
+    if (h >= 24)
+        h -= 24;
+
+    return new MyTime(h,m);
+}
+
+const timeSubtraction = (time1, time2) => {
+    let hours = time1.hours - time2.hours;
+    let minutes = time1.minutes - time2.minutes;
     hours > 24 ? hours -= 24 : {}
     
     if (minutes < 0){
@@ -30,7 +42,7 @@ const timeSubtraction = (time1, time2) =>{
     return new MyTime(hours,minutes);
 }
 
-const offsetNumber= (time) =>{
+const offsetNumber= (time) => {
     var contador = 0;
     let minutes = time.minutes;
     let hours = time.hours;
@@ -63,6 +75,17 @@ const days = {
     Sab: 6
 }
 
+const p_day = (day) => {
+    if ( day === 1 ) return "Lun";
+    if ( day === 2 ) return "Mar";
+    if ( day === 3 ) return "Mie";
+    if ( day === 4 ) return "Jue";
+    if ( day === 5 ) return "Vie";
+    if ( day === 6 ) return "Sab";
+
+    return "";
+}
+
 const p_days = (days) => {
     let output = "";
 
@@ -75,6 +98,7 @@ const p_days = (days) => {
         day === 6 ? output += "Sab" : {}
         output += ", "
     }
-    //le quitamos los últimos 2 lugares, uno corresponde al del espacio en blanco y el otro al de la coma
+    /* le quitamos los últimos 2 lugares, uno corresponde 
+    al del espacio en blanco y el otro al de la coma */
     return output.slice(0,output.length-2);
 }
