@@ -4,7 +4,7 @@
 
 ```shell
 julio, 2019
-HTML 5 | js | css3 | bootstrap v4.3
+HTML 5 | js | css3 | bootstrap v4.1
 ```
 Está página web fue creada con la finalidad de crear un horario lo más rápido posible ya que las vacantes para los grupos siempre se suelen acabar lo que hace que se tenga que reacomodar algunas de nuestras materias.
 
