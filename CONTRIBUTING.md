@@ -1,6 +1,8 @@
 # CONTRIBUTING
 
-Es común que el modelo desarrollo tenga 2 ramas **principales ** cuya vida (duración) será infinita.
+Una vez que haya instalado el proyecto ( ver [aquí](../README.md) ) puede proseguir a contribuir al mismo.
+
+Es común que el modelo desarrollo tenga 2 ramas **principales** cuya vida (duración) será infinita.
 
 * `master`
 * `develop`
