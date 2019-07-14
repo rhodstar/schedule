@@ -42,21 +42,21 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="pills-schedule-table-tab" data-toggle="pill" 
+                    <li class="nav-item mr-1">
+                        <a class="nav-link active btn-outline-danger" id="pills-schedule-table-tab" data-toggle="pill" 
                             href="#pills-schedule-table" role="tab" aria-controls="pills-schedule-table" 
                             aria-selected="false"
                             >Mi horario
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-search-tab" data-toggle="pill" href="#pills-search" 
+                    <li class="nav-item mr-1">
+                        <a class="nav-link btn-outline-danger" id="pills-search-tab" data-toggle="pill" href="#pills-search" 
                             role="tab" aria-controls="pills-search" aria-selected="true">
                             Buscar materias
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-group-add-tab" data-toggle="pill" href="#pills-group-add"
+                    <li class="nav-item mr-1">
+                        <a class="nav-link btn-outline-danger" id="pills-group-add-tab" data-toggle="pill" href="#pills-group-add"
                             role="tab" aria-controls="pills-group-add" aria-selected="false">
                             Agregar mis materias
                         </a>
@@ -68,7 +68,7 @@
                     <div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab">
                         <form class="form-inline">
                             <input class="form-control mb-2 mr-sm-2" placeholder="Clave asignatura" id="subjectkey">
-                            <button class="btn btn-primary mb-2 " type="button" onclick="loadSubjects()">Buscar</button>
+                            <button class="btn btn-outline-danger mb-2 " type="button" onclick="loadSubjects()">Buscar</button>
                         </form>
                         <div id="list-subjects"> </div>  
                     </div>
@@ -78,7 +78,7 @@
                         <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Clave">
                         <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Grupo">
                         
-                        <button type="button" class="btn btn-primary mb-2">Agregar</button>
+                        <button type="button" class="btn btn-outline-danger mb-2">Agregar</button>
                         </form>              
                         <div id="list-subjects-added"> </div>   
                     </div>
