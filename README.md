@@ -45,3 +45,11 @@ La guía para contribuir al proyecto se encuentre [aquí](CONTRIBUTING.md)
 ## Licencia
 
 Este proyecto esta licenciado bajo Apache v2.0, para más información le la licencia entra [aquí](LICENSE)
+
+## Futuras implementaciones
+
+* Agregar un módulo para que los usuarios puedan agregar sus materias con sus repectivas claves y respectivos datos.
+
+* Agregar un módulo dónde el usuario pueda agregar en formato JSON los datos de sus materias.
+
+* Agregar un módulo para que en el mismo sistema se pueda buscar a los profesores y breves opiniones acerca de èl.
