@@ -4,7 +4,7 @@
 
 ```shell
 julio, 2019
-HTML 5 | js | css3 | bootstrap v4.1 | laravel 5.8
+HTML 5 | js | css3 | bootstrap v4.1 | laravel 5.8 | php7.3 | laravel/installer2.1
 ```
 Está página web fue creada con la finalidad de crear un horario lo más rápido posible ya que las vacantes para los grupos siempre se suelen acabar lo que hace que se tenga que reacomodar algunas de nuestras materias.
 
@@ -15,6 +15,16 @@ Está página web fue creada con la finalidad de crear un horario lo más rápid
 El sitio web, al estar escrito en *laravel* simplemente requiere, obviamente, tener instalado laravel, npm y composer. Después de eso para ejecutar el proyecto basta con
 
 ```shell
+composer install
+```
+
+Y por si las dudas
+
+```shell
+composer update --no-scripts
+```
+
+```shell
 npm install
 ```
 
@@ -23,10 +33,10 @@ npm run dev
 ```
 
 ```shell
-php artisan server
+php artisan serve
 ```
 
-
+Finalmente, no hay que olvidar generar el archivo `.env` apropiado, puede empezar reutilizando el que viene el proyecto (`.env.example`).
 
 ##  Contribuciones
 
