@@ -8,6 +8,6 @@ class Subject extends Model
 {
     public function groups()
     {
-        $this->hasMany(Group::class);
+        return $this->hasMany(Group::class);
     }
 }

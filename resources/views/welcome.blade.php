@@ -43,14 +43,7 @@
                 <div class="col-sm-12">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item mr-1">
-                        <a class="nav-link active btn-outline-danger" id="pills-schedule-table-tab" data-toggle="pill" 
-                            href="#pills-schedule-table" role="tab" aria-controls="pills-schedule-table" 
-                            aria-selected="false"
-                            >Mi horario
-                        </a>
-                    </li>
-                    <li class="nav-item mr-1">
-                        <a class="nav-link btn-outline-danger" id="pills-search-tab" data-toggle="pill" href="#pills-search" 
+                        <a class="nav-link active btn-outline-danger" id="pills-search-tab" data-toggle="pill" href="#pills-search" 
                             role="tab" aria-controls="pills-search" aria-selected="true">
                             Buscar materias
                         </a>
@@ -61,16 +54,50 @@
                             Agregar mis materias
                         </a>
                     </li>
+                    <li class="nav-item mr-1">
+                        <a class="nav-link btn-outline-danger" id="pills-schedule-table-tab" data-toggle="pill" 
+                            href="#pills-schedule-table" role="tab" aria-controls="pills-schedule-table" 
+                            aria-selected="false"
+                            >Mi horario
+                        </a>
+                    </li>
                     </ul>
                     
                     
-                    <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab">
-                        <form class="form-inline">
-                            <input class="form-control mb-2 mr-sm-2" placeholder="Clave asignatura" id="subjectkey">
-                            <button class="btn btn-outline-danger mb-2 " type="button" onclick="loadSubjects()">Buscar</button>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab">
+                        <form class="form-inline" action="/search" method="POST" role="search">
+                            {{ csrf_field() }}
+                            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Clave asignatura" id="subjectkey" name="subjectkey">
+                            <button class="btn btn-outline-danger mb-2 " type="submit">Buscar</button>
                         </form>
-                        <div id="list-subjects"> </div>  
+
+                        <div class="container">
+                            @if(isset($details))
+                            <h2>La materia tal, tienes estos Profesor</h2>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Grupo</th>
+                                        <th>Profesor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($details as $group)
+                                    <tr>
+                                        <td>{{$group->gpo}}</td>
+                                        <td>{{$group->profesor}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @elseif(isset($message))
+                            <p>{{ $message }}</p>
+                            @endif
+                        </div>
+
+
+
                     </div>
                     <div class="tab-pane fade" id="pills-group-add" role="tabpanel" aria-labelledby="pills-group-add-tab">
                         <form class="form-inline">
@@ -82,7 +109,7 @@
                         </form>              
                         <div id="list-subjects-added"> </div>   
                     </div>
-                    <div class="tab-pane fade show active" id="pills-schedule-table" role="tabpanel" 
+                    <div class="tab-pane fade" id="pills-schedule-table" role="tabpanel" 
                         aria-labelledby="pills-schedule-table-tab">
                         <div class="col-sm-12 col-md-12 table-responsive" id="schedule-table">
                     </div>
