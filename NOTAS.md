@@ -33,3 +33,15 @@ How to do seeders
 php artisan make:seeder [NombreSeeder]
 ```
 
+## Lo que se supone que es básico
+
+Para imprimir en lugar de utilizar `echo` podemos hacer lo sigueinte
+
+```shell
+<?= e($user) ?>
+```
+
+```shell
+php artisan view:clear # limpia el cache de las vistas 
+```
+

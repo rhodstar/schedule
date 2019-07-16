@@ -6,6 +6,19 @@ use \App\Group;
 
 class GroupSeeder extends Seeder
 {
+
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $this->seed434();
+        $this->seed406();
+        $this->seed1644();
+    }
+    
     function seed434()
     {
         $subject1 = Subject::where('key',434)->value('id');
@@ -106,15 +119,4 @@ class GroupSeeder extends Seeder
         ]);
     }  
 
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $this->seed434();
-        $this->seed406();
-        $this->seed1644();
-    }
 }
