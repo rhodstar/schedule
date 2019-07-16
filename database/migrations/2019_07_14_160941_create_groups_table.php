@@ -16,14 +16,14 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('sub_id');
+            $table->unsignedBigInteger('subject_id');
             $table->unsignedInteger('gpo');
             $table->string('profesor');
             $table->string('horario');
             $table->string('dias');
             $table->unsignedInteger('cupo')->nullable();
 
-            $table->index('sub_id');
+            $table->index('subject_id');
         });
     }
 
