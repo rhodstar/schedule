@@ -1,5 +1,17 @@
 # Aprendiendo Laravel
 
+Crear archivo sqlite
+
+```shell
+touch database/database.sqlite
+```
+
+Remeber to install `php-sqlite`
+
+Then uncomment `;extension=pdo_sqlite.so`
+
+This extension is on `/etc/php/php.ini`
+
 ```shell
 php artisan migrate
 ```
@@ -31,5 +43,11 @@ How to do seeders
 
 ```shell
 php artisan make:seeder [NombreSeeder]
+```
+
+## Making a search engine
+
+```php
+
 ```
 
