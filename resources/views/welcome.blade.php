@@ -66,11 +66,38 @@
                     
                     <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab">
-                        <form class="form-inline">
-                            <input class="form-control mb-2 mr-sm-2" placeholder="Clave asignatura" id="subjectkey">
-                            <button class="btn btn-outline-danger mb-2 " type="button" onclick="loadSubjects()">Buscar</button>
+                        <form class="form-inline" action="/search" method="POST" role="search">
+                            {{ csrf_field() }}
+                            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Clave asignatura" id="subjectkey" name="subjectkey">
+                            <button class="btn btn-outline-danger mb-2 " type="submit">Buscar</button>
                         </form>
-                        <div id="list-subjects"> </div>  
+
+        <div class="container">
+			@if(isset($details))
+			<h2>La materia tal, tienes estos Profesor</h2>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Grupo</th>
+						<th>Profesor</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($details as $group)
+					<tr>
+						<td>{{$group->gpo}}</td>
+						<td>{{$group->profesor}}</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+			@elseif(isset($message))
+			<p>{{ $message }}</p>
+			@endif
+        </div>
+
+
+
                     </div>
                     <div class="tab-pane fade" id="pills-group-add" role="tabpanel" aria-labelledby="pills-group-add-tab">
                         <form class="form-inline">
