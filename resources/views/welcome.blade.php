@@ -72,14 +72,18 @@
                             <button class="btn btn-outline-danger mb-2 " type="submit">Buscar</button>
                         </form>
 
-                        <div class="container">
+                        <div class="table-responsive mt-2" >
                             @if(isset($details))
-                            <h2>La materia tal, tienes estos Profesor</h2>
+                            <h5>Materia: {{$subject}}({{$query}})</h5>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Grupo</th>
                                         <th>Profesor</th>
+                                        <th>Horario</th>
+                                        <th>Días</th>
+                                        <!--th>Cupo</th-->
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,6 +91,16 @@
                                     <tr>
                                         <td>{{$group->gpo}}</td>
                                         <td>{{$group->profesor}}</td>
+                                        <td>{{$group->horario}}</td>
+                                        <td>{{$group->dias}}</td>
+                                        <!--td>{{$group->cupo}}</td-->
+                                        <td>
+                                            <button class="btn btn-primary mb-2" type="button" 
+                                                onclick="searchCell(1644,{$group->gpo})" 
+                                                id="">
+                                            Agregar
+                                            </button>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
