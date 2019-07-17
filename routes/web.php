@@ -21,11 +21,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post ( '/search', function () {
+Route::post ( '/key', function () {
 	$q = Input::get ( 'subjectkey' );
 	if($q != ""){
 		$s = App\Subject::find($q);
-		if (count ( $s ) > 0){ 
+		if ( $s ){ 
 			$groups = $s->groups()->get();
 			/*
 				With more practise this should work
@@ -37,6 +37,24 @@ Route::post ( '/search', function () {
 				return view ( 'welcome' )->withMessage ( 'No hay grupos para esta clave' );
 		}else				
 			return view ( 'welcome' )->withMessage ( 'La clave es incorrecta o no esta en nuestra base de datos, aún.' );		
+	}
+	return view ( 'welcome' )->withMessage ( 'No Details found. Try to search again !' );
+} );
+
+
+Route::post ( '/key_sub', function () {
+	$q = Input::get ( 'key' );
+	$g = Input::get ( 'group' );
+
+	if($q != ""){
+		$s = App\Subject::find($q);
+		if ( $s ){ 
+			$group = $s->groups()->get()->where('gpo',$g);
+			if (count ( $group ) > 0)
+				return view ( 'welcome' )->with('gpo',$group)->withQuery ( $q);
+		}
+		return view ( 'welcome' )->withMessage ( 'Clave o grupo no encontrado.' );
+
 	}
 	return view ( 'welcome' )->withMessage ( 'No Details found. Try to search again !' );
 } );
