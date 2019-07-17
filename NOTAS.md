@@ -1,5 +1,13 @@
 # Aprendiendo Laravel
 
+You rather use 
+
+```shell
+php artisan server --host 0.0.0.0
+```
+
+So that you can see your site in external devices around your network
+
 Crear archivo sqlite
 
 ```shell
