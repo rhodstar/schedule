@@ -14,16 +14,16 @@ class SubjectSeeder extends Seeder
     public function run()
     {
         Subject::create([
-            'key' => 434,
+            'id' => 434,
             'name' => 'COMPILADORES'
         ]);
         Subject::create([
-            'key' => 406,
+            'id' => 406,
             'name' => 'INTELIGENCIA ARTIFICIAL'
         ]);
 
         Subject::create([
-            'key' => 1644,
+            'id' => 1644,
             'name' => 'BASE DE DATOS'
         ]);
     }
