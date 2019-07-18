@@ -1,5 +1,5 @@
-<div class="tab-pane fade" id="pills-group-add" role="tabpanel" aria-labelledby="pills-group-add-tab">
-    <form class="form-inline" method="POST" action="/key_sub">
+<div >
+    <form class="form-inline" method="GET" action="/key_sub">
     {{ csrf_field() }}
     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Clave" name="key">
     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Grupo" name="group">
@@ -9,6 +9,7 @@
    
     <div class="table-responsive mt-2" >
         @if(isset($details))
+        <?php dd($group)?>
         <h5>Materia: {{$subject}}({{$query}})</h5>
         <table class="table table-striped">
             <thead>

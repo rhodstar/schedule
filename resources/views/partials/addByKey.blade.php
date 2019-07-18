@@ -1,6 +1,6 @@
 <div class="tab-pane fade show active" id="pills-search" role="tabpanel" 
     aria-labelledby="pills-search-tab">
-    <form class="form-inline" action="/key" method="POST" role="search">
+    <form class="form-inline" action="/key" method="GET" role="search">
         {{ csrf_field() }}
         <input type="text" class="form-control mb-2 mr-sm-2" 
         placeholder="Clave asignatura" id="subjectkey" name="subjectkey">
