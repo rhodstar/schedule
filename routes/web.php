@@ -16,8 +16,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/addByKey', function () {
+    return view('bykey');
+});
+
+Route::get('/addByKeyAndSub', function () {
+    return view('bykey_sub');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get ( '/addByKey', 'ScheduleController@addByKey')->name('addByKey');
+Route::get ( '/addByKey/s', 'ScheduleController@addByKey_s')->name('addByKey_s');
 
-Route::get ( '/addByKeyAndSub', 'ScheduleController@addByKeyAndSub')->name('addByKeyAndSub');
+Route::get ( '/addByKeyAndSub/s', 'ScheduleController@addByKeyAndSub_s')->name('addByKeyAndSub_s');
