@@ -32,14 +32,15 @@ class ScheduleController extends Controller{
         $q = Input::get ( 'key' );
         $g = Input::get ( 'group' );
     
+/*
         if($q != ""){
             $s = \App\Subject::find($q);
             if ( $s ){ 
                 $groups = $s->groups()->get()->where('gpo',$g);
-                /*
+                
                     With more practise this should work
                     $groups = App\Subject::where('key',1644)->with('groups')->get()->all();
-                */
+                
                 if (count ( $groups ) > 0)
                     return view ( 'bykey_sub' )->with('subject',$s->name)->withDetails ( $groups )->withQuery ( $q);
                 else
@@ -48,5 +49,11 @@ class ScheduleController extends Controller{
                 return view ( 'bykey_sub' )->withMessage ( 'La clave es incorrecta o no esta en nuestra base de datos, aún.' );		
         }
         return view ( 'bykey_sub' )->withMessage ( 'No Details found. Try to search again !' );
-    }
+    */    
+    
+
+        $subjects = Session::get('subjects'); 
+        return view ( 'bykey_sub' )->with('subjects',$subjects);
+    }     
+
 }

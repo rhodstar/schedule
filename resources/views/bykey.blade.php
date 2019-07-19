@@ -1,61 +1,60 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Horario FI</title>
+@section('content')
+    <!-- Page Content -->
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-sm-12">
+                
+                <form class="form-inline" action="/addByKey/s" method="GET" role="search">
+                    {{ csrf_field() }}
+                    <input type="text" class="form-control mb-2 mr-sm-2" 
+                    placeholder="Clave asignatura" id="subjectkey" name="key">
+                    <button class="btn btn-outline-danger mb-2 " type="submit">Buscar</button>
+                </form>
 
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/horario.css') }}" rel="stylesheet">
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/')}}">Horario FI</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" 
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/rhofp/horario-fi">Fork me</a>
-                        </li>
-                    </ul>
+                <div class="table-responsive mt-2" >
+                    @if(isset($details))
+                    <h5>Materia: {{$subject}}({{$query}})</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Grupo</th>
+                                <th>Profesor</th>
+                                <th>Horario</th>
+                                <th>Días</th>
+                                <!--th>Cupo</th-->
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($details as $group)
+                            <tr>
+                                <td>{{$group->gpo}}</td>
+                                <td>{{$group->profesor}}</td>
+                                <td>{{$group->horario}}</td>
+                                <td>{{$group->dias}}</td>
+                                <!--td>{{$group->cupo}}</td-->
+                                <td>
+                                    <button class="btn btn-primary mb-2" type="button" 
+                                        onclick="searchCell(1644,{$group->gpo})" 
+                                        id="">
+                                    Agregar
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @elseif(isset($message))
+                    <div class="alert alert-warning" role="alert">
+                        <p>{{ $message }}</p>
+                    </div>
+                    @endif
                 </div>
-            </div>    
-        </nav>
-
-        <!-- Page Content -->
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-sm-12">
-                    @include('partials.addByKey')
-                </div>
+             
             </div>
         </div>
-        <!-- /.container -->
-
-        <!-- Footer -->
-        <footer class="py-5 bg-dark">
-        <div class="container">
-        <p class="m-0 text-center text-white">Open source project. Feel free to contribute. </p>
-        </div>
-        <!-- /.container -->
-        </footer>
-        <script src="{{ asset('js/TimeClass.js') }}"></script>
-        <script src="{{ asset('js/loadTable.js') }}"></script>
-        <script src="{{ asset('js/searchCell.js') }}"></script>
-    </body>
-</html>
+    </div>
+    <!-- /.container -->
+@endsection
