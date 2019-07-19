@@ -1,18 +1,29 @@
 @extends('layouts.app')
+@section('content')   
 
-@section('content')      
+@if(isset($message))  
+<div class="container">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{$message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+</div>
+@endif
+
 <!-- Page Content -->
 <div class="container ">
     <div class="row">
 
         <div class="col-sm-12 col-md-3">
-            <form class="form" method="GET" action="/addByKeyAndSub/s">
+            <form class="form" method="GET" action="/update">
             {{ csrf_field() }}
             <input type="text" class="form-control mb-2" placeholder="Clave" name="key">
             <input type="text" class="form-control mb-2" placeholder="Grupo" name="group">
             
             <button type="submit" class="btn btn-outline-danger mb-2 mr-1"> Agregar </button>
-            <button class="btn btn-danger mb-2" type="button"> Reiniciar Horario  </button>
+            <a class="btn btn-danger mb-2" href="/flush" role="button"> Reiniciar Horario  </a>
             </form>              
         </div>
 
@@ -28,9 +39,9 @@
 
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="list-sub" role="tabpanel" aria-labelledby="list-sub-tab">
+                <div class="tab-pane fade show active table-responsive" id="list-sub" role="tabpanel" aria-labelledby="list-sub-tab">
                 @isset($subjects)
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="myTable-info">
                         <thead>
                             <tr>
                                 <th>Clave</th>
@@ -55,10 +66,10 @@
                                 <td>{{ $subject['dias'] }}</td>
                                 <!--td></td-->
                                 <td>
-                                    <button class="btn btn-success mb-2" type="button">Cambiar</button>
+                                    <a class="btn btn-success mb-2" href="/" role="button">Cambiar</a>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger mb-2" type="button">Remover</button>
+                                <a class="btn btn-danger mb-2" href="/" role="button"> Remover </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -75,10 +86,10 @@
                     @endif              
                 
                 </div>
-                <div class="tab-pane fade" id="horario" role="tabpanel" aria-labelledby="horario-tab">...</div>
+                <div class="tab-pane fade table-responsive" id="horario" role="tabpanel" aria-labelledby="horario-tab">
+                </div>
             </div>    
         </div>      
-
     </div>
 </div>
 <!-- /.container -->

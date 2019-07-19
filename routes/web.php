@@ -11,11 +11,22 @@
 */
 
 Route::get('/', function () {
-    $subjects = Session::get('subjects');
-    return view('welcome')->with('subjects',$subjects);
+    return view('welcome')->with('subjects',Session::get('subjects'));
 });
 
-Route::get('/pruebas', function () {
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/update', 'ScheduleController@update')->name('update');
+
+
+Route::get('/flush', function () {
+    //reemplazar esto por la instruccion que solo elimna la v. de s. llamada subjects
+    Session::flush(); 
+    return view('welcome');
+});
+
+Route::get('/seed', function () {
 
     Session::flush();
 
@@ -53,29 +64,7 @@ Route::get('/pruebas', function () {
 
     Session::push('subjects', $s3);    
     
-    return view('pruebas');
+    return view('welcome');
 
 });
 
-Route::get('/pruebas/s', function (){
-    $subjects = Session::get('subjects'); 
-    
-    return view('pruebas')->with('subjects',$subjects);
-});
-
-Auth::routes();
-
-Route::get('/addByKey', function () {
-    return view('bykey');
-})->name('addByKey');
-
-Route::get('/addByKeyAndSub', function () {
-    $subjects = Session::get('subjects'); 
-    return view ( 'bykey_sub' )->with('subjects',$subjects);
-})->name('addByKeyAndSub');
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get ( '/addByKey/s', 'ScheduleController@addByKey_s')->name('addByKey_s');
-
-Route::get ( '/addByKeyAndSub/s', 'ScheduleController@addByKeyAndSub_s')->name('addByKeyAndSub_s');

@@ -35,12 +35,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                    <!--li class="nav-item">
-                            <a class="nav-link" href="{{route('addByKey')}}">Agregar por clave</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('addByKeyAndSub')}}">Agregar por clave y grupo</a>
-                        </li>   -->
                         <li class="nav-item">
                             <a class="nav-link" href="https://github.com/rhofp/horario-fi">Fork me</a>
                         </li>                      
@@ -95,5 +89,8 @@
         </div>
         <!-- /.container -->
     </footer>
+    
+    <script src="{{ asset('js/loadTable.js') }}" defer></script>
+
 </body>
 </html>
