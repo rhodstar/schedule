@@ -60,16 +60,12 @@ class ScheduleController extends Controller{
     function subjectOverlaps($gpo){
 
         $gpo_horario = explode("-",$gpo->horario);
-        // $gpo_hini = $gpo_horario[0];
-        // $gpo_hfin = $gpo_horario[1];
         $gpo_dias = explode(", ",$gpo->dias);
 
         $subj_session = \Session::get('subjects');
         if($subj_session){
             foreach ($subj_session as $subj ) {
                 $subj_horario = explode("-",$subj['horario']);
-                // $subj_hini = $subj_horario[0];
-                // $subj_hfin = $subj_horario[1];
                 $subj_dias = explode(", ",$subj['dias']);
 
                 if (array_intersect($gpo_dias, $subj_dias)) 
