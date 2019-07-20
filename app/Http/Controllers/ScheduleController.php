@@ -12,46 +12,43 @@ class ScheduleController extends Controller{
         $k = Input::get ( 'key' );
         $g = Input::get ( 'group' );
 
-        if($k != "" && $g!="" ){
-
-            $s = \App\Subject::find($k);
-
-            if( $s ){
-                $groups = $s->groups()->get()->where('gpo',$g);
-                if (count ( $groups ) > 0){
-
-                    if (!$this->isSubjectOnSession($s->id)){
-                            
-                        \Session::push('subjects',$this->createNewSub($s,$groups));  
-    
-                        return view ( 'welcome' )
-                        ->with('subjects',\Session::get('subjects'));
-                    }else{
-                        return view ( 'welcome' )
-                        ->with('subjects',\Session::get('subjects'))
-                        ->withMessage ( 'La materia solicitad ya esta en la lista.' );
-                    }
-
-                }else{
-                    return view ( 'welcome' )
-                        ->with('subjects',\Session::get('subjects'))
-                        ->withMessage ( 'No dicho grupo para la materia solicitada' );
-                }    
-            }else{
-                return view('welcome')
-                ->with('subjects',\Session::get('subjects'))
-                ->withMessage ( 'Materia no encontrada.' );
+        $error = false;
+        do {
+            if ($k == "" and $g == "") {
+                $error = 'Uno de los campos se encuentra vacío.';
+                break;
             }
-            
-        }else{
-            return view('welcome')
-                ->with('subjects',\Session::get('subjects'))
-                ->withMessage ( 'Uno de los campos se encuentra vacío.' );
-        }
+            $s = \App\Subject::find($k);
+            if (!$s) {
+                $error = 'Materia no encontrada.';
+                break;
+            }
 
+            $groups = $s->groups()->get()->where('gpo',$g);
 
-        return view('welcome')
+            if (count ( $groups ) <= 0){
+                $error ='No dicho grupo para la materia solicitada';
+                break;
+            }
+
+            if ($this->isSubjectOnSession($s->id)){
+                $error = 'La materia solicitad ya esta en la lista.';
+                break;
+            }
+
+            \Session::push('subjects',$this->createNewSub($s,$groups));  
+    
+            return view ( 'welcome' )
             ->with('subjects',\Session::get('subjects'));
+
+
+        } while (false);
+
+        if ($error)
+            return view('welcome')
+            ->with('subjects',\Session::get('subjects'))
+            ->withMessage ( $error );
+
     }
 
     function isSubjectOnSession($s_id){
