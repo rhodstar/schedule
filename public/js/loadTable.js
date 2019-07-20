@@ -3,26 +3,73 @@ window.onload =() => {
 
     let table = document.getElementById("myTable-info");
 
+    let allSubs = [];
+
     if(table){
         let tr = table.getElementsByTagName("tr");
         for (let index = 1; index < tr.length; index++) {
             const row = tr[index].getElementsByTagName("td");
-            for (let j = 0; j < row.length-2; j++) {
-                const col = row[j];
-                console.log(col);
-            }
+            const h_array = changeToTimeArray(row[4].textContent);
+            const s={
+                key : row[0].textContent,
+                name: row[1].textContent,
+                gpo: row[2].textContent,
+                profesor : row[3].textContent,
+                horario_ini : h_array[0] ,
+                horario_fin : h_array[1] ,
+                dias: changeToDayArraY(row[5].textContent)
+            }  
+            allSubs.push(s);
         }
     }
+    
+    for (const sub of allSubs) {
+        placeSubject(sub);
+    }    
+}
 
-    placeSubject({
-        key : 406,
-        name: "INTELIGENCIA ARTIFICIAL",
-        gpo: 1,
-        profesor : 'DR. GUILLERMO GILBERTO MOLERO CASTILLO',
-        horario_ini : new MyTime(11,0),
-        horario_fin : new MyTime(13,0),
-        dias: [days.Lun,days.Mar]
-    });
+const changeToTimeArray = (horario) => {
+    let nhorario = horario.split("-");
+    let h_ini = nhorario[0].split(":");
+    let h_fin = nhorario[1].split(":");
+
+    let ini = new MyTime(parseInt(h_ini[0], 10),parseInt(h_ini[1], 10));
+    let fin = new MyTime(parseInt(h_fin[0], 10),parseInt(h_fin[1], 10));
+
+    return [ini,fin];
+}
+
+const changeToDayArraY = (dias) => {
+
+    let ndias = dias.split(", ");
+    let edias = [];
+
+    for (const dia of ndias) {
+        switch (dia) {
+            case "Lun":
+                edias.push(days.Lun);
+                break;
+            case "Mar":
+                edias.push(days.Mar);
+                break;
+            case "Mie":
+                edias.push(days.Mie);
+                break;                
+            case "Jue":
+                edias.push(days.Jue);
+                break;                
+            case "Vie":
+                edias.push(days.Vie);
+                break;                
+            case "Sab":
+                edias.push(days.Sab);
+                break;        
+            default:
+                break;
+        }
+    }
+    return edias;
+
 }
 
 const createEmptyTable = () => {
@@ -80,12 +127,11 @@ const placeSubject = (subject) => {
     let td = tr[verticalOffset].getElementsByTagName("td");
 
     for (const dia of subject.dias) {
-        td[dia].style.backgroundColor = "blue"; 
+        // td[dia].style.backgroundColor = "blue"; 
         td[dia].innerHTML =`
         <div class="p-2 text-center">
-            <h6>${subject.name} </h6>
-            <p>${subject.profesor} </p>
-            <p>grupo ${subject.gpo} </p>
+            <h6>${subject.name} (${subject.key}, gpo: ${subject.gpo}) </h6>
+            <span>${subject.profesor}</span>
         </div>`;
         td[dia].rowSpan = subjOffset;      
     }
