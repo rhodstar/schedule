@@ -30,9 +30,22 @@ window.onload =() => {
         }
     }
     
-    for (const sub of allSubs) {
+    for (const sub of allSubs) 
         placeSubject(sub);
-    }    
+
+    let t1_ini_proof = new MyTime(15,0);
+    let t1_fin_proof = new MyTime(17,0);
+    let t2__ini_proof = new MyTime(13,0);
+    let t2__fin_proof = new MyTime(14,0);
+
+    if (timeOneIsGreeter(t1_proof,t2_proof)) {
+        alert("El primer teimpo es más grande");
+    }else{
+        alert("El segundo tiempo es más grande");
+    }
+
+
+    
 }
 
 const changeToTimeArray = (horario) => {
@@ -152,6 +165,24 @@ class MyTime{
         this.minutes = minutes;
     }
 
+}
+
+const scheduleOverlapses = (h1,h2) => {
+    if (timeOneIsGreeter(h1.horario_ini,h2.horario_fin)) {
+        return 
+    }
+}
+
+const timeOneIsGreeter = (t1,t2) => {
+    if (t1.hours > t2.hours) {
+        return true;
+    }
+    if (t1.hours == t2.hours && 
+        t1.minutes > t2.minutes ) {
+        return true;
+    }
+
+    return false;
 }
 
 const isTimeEquals = (t1, t2) => {

@@ -36,6 +36,12 @@ class ScheduleController extends Controller{
                 break;
             }
 
+    /* 
+                if($this->subjectOverlaps($s,$gpo)){
+                    $error = 'La materia solicitad se translapa con otras.';
+                    break;
+                } */
+
             \Session::push('subjects',$this->createNewSub($s,$groups));  
     
             return view ( 'welcome' )
@@ -49,6 +55,10 @@ class ScheduleController extends Controller{
             ->with('subjects',\Session::get('subjects'))
             ->withMessage ( $error );
 
+    }
+
+    function subjectOverlaps($s,$gpo){
+        return false;
     }
 
     function isSubjectOnSession($s_id){
@@ -65,11 +75,11 @@ class ScheduleController extends Controller{
         $new_sub['key'] = $s->id;
         $new_sub['name'] = $s->name;
 
-        foreach ($groups as $gpo) {   
+        foreach ($groups as $gpo ) {
             $new_sub['gpo'] = $gpo->gpo;
             $new_sub['profesor'] = $gpo->profesor;
             $new_sub['horario'] = $gpo->horario;
-            $new_sub['dias'] = $gpo->dias;
+            $new_sub['dias'] = $gpo->dias;            
         }
         return $new_sub;
     }
