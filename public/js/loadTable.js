@@ -33,17 +33,18 @@ window.onload =() => {
     for (const sub of allSubs) 
         placeSubject(sub);
 
-    let t1_ini_proof = new MyTime(15,0);
-    let t1_fin_proof = new MyTime(17,0);
-    let t2__ini_proof = new MyTime(13,0);
-    let t2__fin_proof = new MyTime(14,0);
-
-    if (timeOneIsGreeter(t1_proof,t2_proof)) {
-        alert("El primer teimpo es más grande");
+    if (scheduleOverlapses({
+            horario_ini: new MyTime(14,0),
+            horario_fin: new MyTime(16,0),
+        },{
+            horario_ini: new MyTime(11,0),
+            horario_fin: new MyTime(12,30), 
+        })) {
+        console.log("Los horarios se translapan");
     }else{
-        alert("El segundo tiempo es más grande");
+        console.log("Los horarios no se translapan");
+        
     }
-
 
     
 }
@@ -168,9 +169,19 @@ class MyTime{
 }
 
 const scheduleOverlapses = (h1,h2) => {
-    if (timeOneIsGreeter(h1.horario_ini,h2.horario_fin)) {
-        return 
+    if (timeOneIsGreeter(h2.horario_fin,h1.horario_ini)) {
+        if (timeOneIsGreeter(h1.horario_fin,h2.horario_ini)) {
+            return true;
+        }
+        return false;
+    } else {
+        if (timeOneIsGreeter(h2.horario_fin,h1.horario_ini)) {
+            return true;
+        }
+        return false;
     }
+    return false;
+
 }
 
 const timeOneIsGreeter = (t1,t2) => {
@@ -181,7 +192,6 @@ const timeOneIsGreeter = (t1,t2) => {
         t1.minutes > t2.minutes ) {
         return true;
     }
-
     return false;
 }
 
