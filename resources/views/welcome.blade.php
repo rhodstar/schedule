@@ -73,7 +73,7 @@
                                     <a class="btn btn-success mb-2" href="/" role="button">Cambiar</a>
                                 </td>
                                 <td>
-                                <a class="btn btn-danger mb-2" href="/" role="button"> Remover </a>
+                                <a class="btn btn-danger mb-2" href="/flush/{{ $subject['key'] }}" role="button"> Remover </a>
                                 </td>
                             </tr>
                         @endforeach

@@ -74,4 +74,30 @@ class ScheduleController extends Controller{
             ->with('subjects',\Session::get('subjects'));
     }
 
+    public function flushbykey($key){
+        $subj_session = \Session::get('subjects');
+
+        if($subj_session != null){
+            $i = 0;
+            foreach ($subj_session as $subj ) {
+                if ($key == $subj['key']){
+                    unset($subj_session[$i]);  
+                    // Re-index the array elements 
+                    $subj_session = array_values($subj_session);
+                    break;
+                }
+                $i++;
+            }
+        }
+
+        \Session::flush();
+        foreach ($subj_session as $subj ) {
+            \Session::push('subjects', $subj);  
+        }
+
+        return view('welcome')
+        ->with('subjects',\Session::get('subjects'));
+        
+    }
+
 }

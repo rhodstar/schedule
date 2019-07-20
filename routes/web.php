@@ -22,5 +22,7 @@ Route::get('/flush', function () {
     return view('welcome');
 });
 
+Route::get('/flush/{key}', 'ScheduleController@flushbykey')->where('key', '[0-9]+');;
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
