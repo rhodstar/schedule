@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 
 use \App\Subject;
 use \App\Group;
+use \Datetime;
 class ScheduleController extends Controller{
     public function update(){
         $k = Input::get ( 'key' );
@@ -25,7 +26,7 @@ class ScheduleController extends Controller{
             }
 
             $groups = $s->groups()->get()->where('gpo',$g);
-
+            
             if (count ( $groups ) <= 0){
                 $error ='No dicho grupo para la materia solicitada';
                 break;
@@ -36,11 +37,10 @@ class ScheduleController extends Controller{
                 break;
             }
 
-    /* 
-                if($this->subjectOverlaps($s,$gpo)){
-                    $error = 'La materia solicitad se translapa con otras.';
-                    break;
-                } */
+            if($this->subjectOverlaps($groups{0})){
+                $error = 'La materia solicitad se translapa con otras.';
+                break;
+            }
 
             \Session::push('subjects',$this->createNewSub($s,$groups));  
     
@@ -57,8 +57,42 @@ class ScheduleController extends Controller{
 
     }
 
-    function subjectOverlaps($s,$gpo){
+    function subjectOverlaps($gpo){
+
+        $gpo_horario = explode("-",$gpo->horario);
+        // $gpo_hini = $gpo_horario[0];
+        // $gpo_hfin = $gpo_horario[1];
+        $gpo_dias = explode(", ",$gpo->dias);
+
+        $subj_session = \Session::get('subjects');
+        if($subj_session){
+            foreach ($subj_session as $subj ) {
+                $subj_horario = explode("-",$subj['horario']);
+                // $subj_hini = $subj_horario[0];
+                // $subj_hfin = $subj_horario[1];
+                $subj_dias = explode(", ",$subj['dias']);
+
+                if (array_intersect($gpo_dias, $subj_dias)) 
+                    if( scheduleOverlapses($gpo_horario,$subj_horario))
+                        return true;
+            }
+        }
         return false;
+    }
+
+    function scheduleOverlapses($h1,$h2){
+        if (timeOneIsGreeter(h1[0],h2[0])){
+            if (timeOneIsGreeter(h2[1],h1[0])) 
+                return true;
+        }else{
+            if (timeOneIsGreeter(h1[1],h2[0])) 
+                return true;        
+        }
+        return false;        
+    }
+
+    function timeOneIsGreeter($t1,$t2){
+        return (strtotime($t1)>strtotime($t2)) ? true : false ;
     }
 
     function isSubjectOnSession($s_id){
