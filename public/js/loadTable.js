@@ -1,3 +1,10 @@
+$('#left-panel').on('hide.bs.collapse', function () {
+    $("#myContent").removeClass("col-md-9").addClass("col-md-12");
+});
+$('#left-panel').on('show.bs.collapse', function () {
+    $("#myContent").removeClass("col-md-12").addClass("col-md-9");
+});
+
 window.onload =() => {
     createEmptyTable();
 

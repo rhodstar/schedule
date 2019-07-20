@@ -16,7 +16,7 @@
 <div class="container ">
     <div class="row">
 
-        <div class="col-sm-12 col-md-3">
+        <div class="col-sm-12 col-md-3 collapse show" id="left-panel">
             <form class="form" method="GET" action="/update">
             {{ csrf_field() }}
             <input type="text" class="form-control mb-2" placeholder="Clave" name="key">
@@ -27,9 +27,13 @@
             </form>              
         </div>
 
-        <div class="col-sm-12 col-md-9">
+        <div class="col-sm-12 col-md-9" id="myContent">
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" id="panel-tab" data-toggle="collapse" href="#panel" role="tab" aria-controls="panel" data-target="#left-panel" aria-selected="false">Toggle panel</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link active" id="list-sub-tab" data-toggle="tab" href="#list-sub" role="tab" aria-controls="list-sub" aria-selected="true">Materias</a>
                 </li>
