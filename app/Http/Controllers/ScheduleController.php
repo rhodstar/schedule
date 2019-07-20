@@ -20,29 +20,9 @@ class ScheduleController extends Controller{
                 $groups = $s->groups()->get()->where('gpo',$g);
                 if (count ( $groups ) > 0){
 
-                    $flag = false;
-                    
-                    if(\Session::get('subjects')!= null){
-                        foreach (\Session::get('subjects') as $subj ) {
-                            if ($s->id == $subj['key']){
-                                $flag = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (!$flag){
-                        $new_sub = [];
-                        $new_sub['key'] = $s->id;
-                        $new_sub['name'] = $s->name;
-    
-                        foreach ($groups as $gpo) {   
-                            $new_sub['gpo'] = $gpo->gpo;
-                            $new_sub['profesor'] = $gpo->profesor;
-                            $new_sub['horario'] = $gpo->horario;
-                            $new_sub['dias'] = $gpo->dias;
-                        }
-                        \Session::push('subjects', $new_sub);  
+                    if (!$this->isSubjectOnSession($s->id)){
+                            
+                        \Session::push('subjects',$this->createNewSub($s,$groups));  
     
                         return view ( 'welcome' )
                         ->with('subjects',\Session::get('subjects'));
@@ -72,6 +52,29 @@ class ScheduleController extends Controller{
 
         return view('welcome')
             ->with('subjects',\Session::get('subjects'));
+    }
+
+    function isSubjectOnSession($s_id){
+                    
+        if(\Session::get('subjects')!= null)
+            foreach (\Session::get('subjects') as $subj ) 
+                if ($s_id == $subj['key'])
+                    return true;
+        return false;       
+    }
+
+    function createNewSub($s,$groups){
+        $new_sub = [];
+        $new_sub['key'] = $s->id;
+        $new_sub['name'] = $s->name;
+
+        foreach ($groups as $gpo) {   
+            $new_sub['gpo'] = $gpo->gpo;
+            $new_sub['profesor'] = $gpo->profesor;
+            $new_sub['horario'] = $gpo->horario;
+            $new_sub['dias'] = $gpo->dias;
+        }
+        return $new_sub;
     }
 
     public function flushbykey($key){
