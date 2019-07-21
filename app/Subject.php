@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace HorarioFI;
 
 use Illuminate\Database\Eloquent\Model;
 

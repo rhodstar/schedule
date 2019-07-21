@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace HorarioFI\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
-use \App\Subject;
-use \App\Group;
+use \HorarioFI\Subject;
+use \HorarioFI\Group;
 use \Datetime;
 class ScheduleController extends Controller{
     public function update(){
@@ -19,7 +19,7 @@ class ScheduleController extends Controller{
                 $error = 'Uno de los campos se encuentra vacío.';
                 break;
             }
-            $s = \App\Subject::find($k);
+            $s = \HorarioFI\Subject::find($k);
             if (!$s) {
                 $error = 'Materia no encontrada.';
                 break;

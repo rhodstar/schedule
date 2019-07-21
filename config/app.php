@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'HorarioFI'),
 
     /*
     |--------------------------------------------------------------------------
@@ -169,11 +169,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        HorarioFI\Providers\AppServiceProvider::class,
+        HorarioFI\Providers\AuthServiceProvider::class,
+        // HorarioFI\Providers\BroadcastServiceProvider::class,
+        HorarioFI\Providers\EventServiceProvider::class,
+        HorarioFI\Providers\RouteServiceProvider::class,
 
     ],
 

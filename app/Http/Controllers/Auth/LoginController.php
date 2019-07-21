@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace HorarioFI\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use HorarioFI\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller

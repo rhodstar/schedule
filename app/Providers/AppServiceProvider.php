@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace HorarioFI\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
