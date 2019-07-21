@@ -18,7 +18,6 @@
 
         <div class="col-sm-12 col-md-3 collapse show" id="left-panel">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
-     
                 <li class="nav-item">
                     <a class="nav-link active" id="subj-group-tab" data-toggle="tab" href="#subj-group" role="tab" aria-controls="subj-group" aria-selected="true">MyG</a>
                 </li>
@@ -26,25 +25,25 @@
                     <a class="nav-link" id="only-sub-tab" data-toggle="tab" href="#only-sub" role="tab" aria-controls="only-sub" aria-selected="false">M</a>
                 </li>
             </ul>
-            <div class="tab-pane fade show active" id="subj-group" role="tabpanel" aria-labelledby="subj-group-tab">
-                <form class="form" method="GET" action="/update">
-                {{ csrf_field() }}
-                <input type="text" class="form-control mb-2" placeholder="Clave" name="key">
-                <input type="text" class="form-control mb-2" placeholder="Grupo" name="group">
-                
-                <button type="submit" class="btn btn-outline-danger mb-2 mr-1"> Agregar </button>
-                <a class="btn btn-danger mb-2" href="/flush" role="button"> Reiniciar Horario  </a>
-                </form>  
-            </div>    
-            <div class="tab-pane fade table-responsive" id="only-sub" role="tabpanel" aria-labelledby="only-sub-tab">
-                <form class="form" method="GET" action="/">
-                    {{ csrf_field() }}
-                    <input type="text" class="form-control mb-2" placeholder="Clave" name="key">
-                    
-                    <button type="submit" class="btn btn-outline-danger mb-2 mr-1"> Buscar </button>
-                    <a class="btn btn-danger mb-2" href="/flush" role="button"> Reiniciar Horario  </a>
-                </form>  
-            </div>             
+            <div class="tab-content" id="myTabContent2">
+                <div class="tab-pane fade show active" id="subj-group" role="tabpanel" aria-labelledby="subj-group-tab">
+                    <form class="form" method="GET" action="/update">
+                        {{ csrf_field() }}
+                        <input type="text" class="form-control mb-2" placeholder="Clave" name="key">
+                        <input type="text" class="form-control mb-2" placeholder="Grupo" name="group">
+                        
+                        <button type="submit" class="btn btn-outline-danger mb-2 mr-1"> Agregar </button>
+                        <a class="btn btn-danger mb-2" href="/flush" role="button"> Reiniciar Horario  </a>
+                    </form>  
+                </div>    
+                <div class="tab-pane fade" id="only-sub" role="tabpanel" aria-labelledby="only-sub-tab">
+                    <form class="form" method="GET" action="/">
+                        {{ csrf_field() }}
+                        <input type="text" class="form-control mb-2" placeholder="Clave" name="key">
+                        <button type="submit" class="btn btn-outline-danger mb-2 mr-1"> Buscar </button>
+                    </form>  
+                </div> 
+            </div>            
         </div>
 
         <div class="col-sm-12 col-md-9" id="myContent">
