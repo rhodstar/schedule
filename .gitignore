@@ -1,4 +1,5 @@
 .DS_Store # For macOS cache files
+.ipynb_checkpoints/
 /node_modules
 /public/hot
 /public/storage
