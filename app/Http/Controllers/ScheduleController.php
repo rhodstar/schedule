@@ -15,7 +15,7 @@ class ScheduleController extends Controller{
 
         $error = false;
         do {
-            if ($k == "" and $g == "") {
+            if ($k == "" && $g == "") {
                 $error = 'Uno de los campos se encuentra vacío.';
                 break;
             }
@@ -28,17 +28,17 @@ class ScheduleController extends Controller{
             $groups = $s->groups()->get()->where('gpo',$g);
             
             if (count ( $groups ) <= 0){
-                $error ='No dicho grupo para la materia solicitada';
+                $error ='No existe dicho grupo para la materia solicitada';
                 break;
             }
 
             if ($this->isSubjectOnSession($s->id)){
-                $error = 'La materia solicitad ya esta en la lista.';
+                $error = 'La materia solicitada ya esta en la lista.';
                 break;
             }
 
-            if($this->subjectOverlaps($groups{0})){
-                $error = 'La materia solicitad se translapa con otras.';
+            if($this->subjectOverlaps($groups)){
+                $error = 'La materia solicitada se translapa con otras.';
                 break;
             }
 
@@ -57,19 +57,24 @@ class ScheduleController extends Controller{
 
     }
 
-    function subjectOverlaps($gpo){
+    function subjectOverlaps($gpos){
 
-        $gpo_horario = explode("-",$gpo->horario);
-        $gpo_dias = explode(", ",$gpo->dias);
+        $gpo_horario = [];
+        $gpo_dias = [];
+
+        foreach ($gpos as $gpo ) {
+            $gpo_horario = explode(" a ",$gpo->horario);
+            $gpo_dias = explode(", ",$gpo->dias);            
+        }
 
         $subj_session = \Session::get('subjects');
         if($subj_session){
             foreach ($subj_session as $subj ) {
-                $subj_horario = explode("-",$subj['horario']);
+                $subj_horario = explode(" a ",$subj['horario']);
                 $subj_dias = explode(", ",$subj['dias']);
 
                 if (array_intersect($gpo_dias, $subj_dias)) 
-                    if( scheduleOverlapses($gpo_horario,$subj_horario))
+                    if( $this->scheduleOverlapses($gpo_horario,$subj_horario))
                         return true;
             }
         }
@@ -77,11 +82,11 @@ class ScheduleController extends Controller{
     }
 
     function scheduleOverlapses($h1,$h2){
-        if (timeOneIsGreeter(h1[0],h2[0])){
-            if (timeOneIsGreeter(h2[1],h1[0])) 
+        if ($this->timeOneIsGreeter($h1[0],$h2[0])){
+            if ($this->timeOneIsGreeter($h2[1],$h1[0])) 
                 return true;
         }else{
-            if (timeOneIsGreeter(h1[1],h2[0])) 
+            if ($this->timeOneIsGreeter($h1[1],$h2[0])) 
                 return true;        
         }
         return false;        

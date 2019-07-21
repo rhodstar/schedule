@@ -49,8 +49,8 @@
                         <thead>
                             <tr>
                                 <th>Clave</th>
-                                <th>Materia</th>
                                 <th>Grupo</th>
+                                <th>Materia</th>
                                 <th>Profesor</th>
                                 <th>Horario</th>
                                 <th>Días</th>
@@ -63,8 +63,8 @@
                         @foreach($subjects as $subject)
                             <tr>
                                 <td>{{ $subject['key'] }}</td>
-                                <td>{{ $subject['name'] }}</td>
                                 <td>{{ $subject['gpo'] }}</td>
+                                <td>{{ $subject['name'] }}</td>
                                 <td>{{ $subject['profesor'] }}</td>
                                 <td>{{ $subject['horario'] }}</td>
                                 <td>{{ $subject['dias'] }}</td>

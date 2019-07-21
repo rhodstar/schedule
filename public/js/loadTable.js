@@ -19,8 +19,8 @@ window.onload =() => {
             const h_array = changeToTimeArray(row[4].textContent);
             const s={
                 key : row[0].textContent,
-                name: row[1].textContent,
-                gpo: row[2].textContent,
+                name: row[2].textContent,
+                gpo: row[1].textContent,
                 profesor : row[3].textContent,
                 horario_ini : h_array[0] ,
                 horario_fin : h_array[1] ,
@@ -36,7 +36,7 @@ window.onload =() => {
 }
 
 const changeToTimeArray = (horario) => {
-    let nhorario = horario.split("-");
+    let nhorario = horario.split(" a ");
     let h_ini = nhorario[0].split(":");
     let h_fin = nhorario[1].split(":");
 
@@ -133,17 +133,29 @@ const placeSubject = (subject) => {
     
     let td = tr[verticalOffset].getElementsByTagName("td");
 
+    let rand_color = getRandomColor();
+
     for (const dia of subject.dias) {
-        // td[dia].style.backgroundColor = "blue"; 
+        td[dia].style.backgroundColor = rand_color; 
         td[dia].innerHTML =`
         <div class="p-2 text-center">
-            <h6>${subject.name} (${subject.key}, gpo: ${subject.gpo}) </h6>
+            <h6>${subject.name} (${subject.key}, ${subject.gpo}) </h6>
             <span>${subject.profesor}</span>
         </div>`;
         td[dia].rowSpan = subjOffset;      
     }
 
 }
+
+const getRandomColor = () => {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+  
 
 class MyTime{
 
