@@ -12,16 +12,58 @@ Está página web fue creada con la finalidad de crear un horario lo más rápid
 
 ## Uso para desarrolladores
 
-El sitio web, al estar escrito en *laravel* simplemente requiere, obviamente, tener instalado laravel, npm y composer. Después de eso para ejecutar el proyecto basta con
+### Dependencias
+
+El sitio web, al estar escrito en *laravel* y por ende se requiere tener instalado 
+
+* npm 
+
+  ```shell
+  sudo pacman -S npm
+  ```
+
+* composer
+
+  ```shell
+  sudo pacman -S npm
+  ```
+
+* laravel
+
+  ```shell
+  composer global require laravel/installer
+  ```
+
+  Y se debe configurar el `$PATH`, para mi caso yo uso `fish shell` por lo cual
+
+  ```shell
+  vim ~/.config/fish/config.fish 
+  ```
+
+  ```shell
+  set -gx $PATH $HOME/.config/composer/vendor/bin
+  ```
+
+* Y el manejador de DB que vaya a utlizar, se recomienda `sqlite`
+  
+  * Si utliza `sqlite`, debe tener instalado  `php-sqlite` y buscar la forma de habilitarlo en su sistema operativo (Se hace distinto en cada OS).
+  
+    Para el caso de linux, después de instalar `php-sqlite,` debe abrir en modo escritura el archivo
+  
+    `/etc/php/php.ini` y descomentar `;extension=pdo_sqlite.so`
+  
+    En **resumen**
+  
+    ```shell
+    sudo pacman -S php-slite
+    sudo vim /etc/php/php.ini
+    ```
+
+## Instalación
+
 
 ```shell
 composer install
-```
-
-Y por si las dudas
-
-```shell
-composer update --no-scripts
 ```
 
 ```shell
@@ -33,10 +75,34 @@ npm run dev
 ```
 
 ```shell
-php artisan serve
+php artisan key:generate
 ```
 
-Finalmente, no hay que olvidar generar el archivo `.env` apropiado, puede empezar reutilizando el que viene el proyecto (`.env.example`).
+#### Configuración de la base de datos
+
+Ahora debe configurar la conexión a la base de datos que vaya a usar (sqlite,MySQL,POSTGRESS,etc.), para realizar dicha configuración debe de modificar el archivo `.env`, si no tiene el archivo .env en el proyecto puede utilizar el `.env.example` como ejemplo, dicho archivo ya viene con las configuraciones para enlazarse con `sqlite`, por lo cual lo único que tiene que hacer es
+
+```shell
+cp .env.example .env
+touch database/database.sqlite # El archivo creado es necesario para sqlite
+```
+
+#### Hacer la migraciones y poblar la base de datos
+
+```shell
+php artisan migrate # Creando las tablas en la base de datos
+```
+
+```php
+php artisan db:seed # Poblando la base de datos ... este comando tardará algo de tiempo
+```
+
+#### Lanzar el servidor
+
+```shell
+php artisan serve
+php artisan serve --host 0.0.0.0 # Para poder ver la página el dispositivos móvles externos
+```
 
 ##  Contribuciones
 

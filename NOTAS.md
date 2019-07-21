@@ -1,25 +1,5 @@
 # Aprendiendo Laravel
 
-You rather use 
-
-```shell
-php artisan server --host 0.0.0.0
-```
-
-So that you can see your site in external devices around your network
-
-Crear archivo sqlite
-
-```shell
-touch database/database.sqlite
-```
-
-Remeber to install `php-sqlite`
-
-Then uncomment `;extension=pdo_sqlite.so`
-
-This extension is on `/etc/php/php.ini`
-
 ```shell
 php artisan migrate
 ```
@@ -44,6 +24,8 @@ Reset all changes (Drop table)
 php artisan migrate:reset
 # or
 php artisan migrate:fresh
+php artisan db:seed
+# or
 php artisan migrate:fresh --seed
 ```
 
