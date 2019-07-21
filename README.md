@@ -8,7 +8,7 @@ HTML 5 | js | css3 | bootstrap v4.1 | laravel 5.8 | php7.3 | laravel/installer2.
 ```
 Está página web fue creada con la finalidad de crear un horario lo más rápido posible ya que las vacantes para los grupos siempre se suelen acabar lo que hace que se tenga que reacomodar algunas de nuestras materias.
 
-![Primeras impresiones](img/s1.png)
+![Primeras impresiones](img/s2.png)
 
 ## Uso para desarrolladores
 
