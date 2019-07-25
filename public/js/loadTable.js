@@ -28,10 +28,10 @@ window.onload =() => {
             }  
             allSubs.push(s);
         }
-    }
+    }  
     
     for (const sub of allSubs) 
-        placeSubject(sub);
+        placeSubject(sub);   
 
 }
 
@@ -122,29 +122,30 @@ const placeSubject = (subject) => {
     let initTime = new MyTime(7,0)
     let table = document.getElementById("mytable");
     let tr = table.getElementsByTagName("tr");
-
+  
     let verticalTime = timeSubtraction(subject.horario_ini,initTime);
-
+    
     let subjectTime = timeSubtraction(subject.horario_fin,subject.horario_ini);
 
-    let verticalOffset = offsetNumber(verticalTime)*4+1;
+    let verticalOffset = offsetNumber(verticalTime)+1;
     
-    let subjOffset = offsetNumber(subjectTime)*4;
+    let subjOffset = offsetNumber(subjectTime);
     
     let td = tr[verticalOffset].getElementsByTagName("td");
 
-    let rand_color = getRandomColor();
+    let rand_color = getRandomColor(); 
 
-    for (const dia of subject.dias) {
+    for (let dia of subject.dias) {
+        console.log(dia);
         td[dia].style.backgroundColor = rand_color; 
         td[dia].innerHTML =`
         <div class="p-2 text-center">
             <h6>${subject.name} (${subject.key}, ${subject.gpo}) </h6>
             <span>${subject.profesor}</span>
         </div>`;
-        td[dia].rowSpan = subjOffset;      
+        td[dia].rowSpan = subjOffset;  
     }
-
+    debugger;
 }
 
 const getRandomColor = () => {
@@ -227,14 +228,10 @@ const offsetNumber= (time) => {
     var contador = 0;
     let minutes = time.minutes;
     let hours = time.hours;
-    while (hours > 0){
-        minutes = time.minutes -15;
-        if (minutes < 0){
-            minutes = 60 + minutes;
-            hours --;
-        }
-        contador++;
-    }    
+
+    contador += hours * 4;
+    contador += Math.trunc(minutes / 15 ) ;
+    
     return contador;
 }
 
