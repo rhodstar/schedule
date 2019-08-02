@@ -106,7 +106,7 @@ const createEmptyTable = () => {
         initTime = timeSum(tt,lapsus);
         
         for (let j = 0; j < Object.keys(days).length; j++) {
-            output += `<td></td>`      
+            output += `<td class="${j+1}"></td>`      
         }
         output += `</tr>`;
         
@@ -136,7 +136,8 @@ const placeSubject = (subject) => {
     let rand_color = getRandomColor(); 
 
     for (let dia of subject.dias) {
-        console.log(dia);
+        //let t = tr[verticalOffset].getElementById(dia);
+        console.log(tr[verticalOffset]);        
         td[dia].style.backgroundColor = rand_color; 
         td[dia].innerHTML =`
         <div class="p-2 text-center">
@@ -145,7 +146,6 @@ const placeSubject = (subject) => {
         </div>`;
         td[dia].rowSpan = subjOffset;  
     }
-    debugger;
 }
 
 const getRandomColor = () => {
