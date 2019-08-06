@@ -74,10 +74,6 @@ npm install
 npm run dev
 ```
 
-```shell
-php artisan key:generate
-```
-
 #### Configuración de la base de datos
 
 Ahora debe configurar la conexión a la base de datos que vaya a usar (sqlite,MySQL,POSTGRESS,etc.), para realizar dicha configuración debe de modificar el archivo `.env`, si no tiene el archivo .env en el proyecto puede utilizar el `.env.example` como ejemplo, dicho archivo ya viene con las configuraciones para enlazarse con `sqlite`, por lo cual lo único que tiene que hacer es
@@ -85,6 +81,8 @@ Ahora debe configurar la conexión a la base de datos que vaya a usar (sqlite,My
 ```shell
 cp .env.example .env
 touch database/database.sqlite # El archivo creado es necesario para sqlite
+
+php artisan key:generate
 ```
 
 #### Hacer la migraciones y poblar la base de datos

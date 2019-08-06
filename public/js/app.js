@@ -49507,8 +49507,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/administrador/Files/horario-fi/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/administrador/Files/horario-fi/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/rho/Documents/horario-fi/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/rho/Documents/horario-fi/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
