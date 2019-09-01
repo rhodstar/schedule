@@ -10,6 +10,39 @@ Está página web fue creada con la finalidad de crear un horario lo más rápid
 
 ![Primeras impresiones](img/s2.png)
 
+
+
+## Reglas de negocio
+
+Hacer script para que cada 10 minutos se actualice el cupo disponible de los grupos.
+
+### Si el usuario NO esta logueado
+
+Se muestra dos input, el primero puede insertar la clave de la materia y en el segundo  el grupo, en caso de que 
+
+### Si el usuario esta loguedo
+
+Los datos básicos que se recaudarán del usuario son 
+
+* Nombre
+* Carrera
+* Plan de estudios
+* Año de ingreso a la facultad
+
+Por semestre se pedirá que se actualicen los siguiente datos con la finalidad de que el proceso de generación de horario sea lo más rápido posible
+
+* Clave de las materias que probablemente cursará en el semestre, indicar que se recomienda lista  de 7 a 9 materias con la finalidad de tener una amplia gamma de horarios a elegir.
+
+Una vez que se eligieron las materias probablemente cursará se deben mostrar en un dropdown y en un segundo dropdown se deben mostrar los grupos de la asignatura que este seleccionada en el dropdown de asignaturas.
+
+### API
+
+Desarrollar las 
+
+## Features / Issues
+
+Corregir bug de despliegue del horario gráfico.
+
 ## Uso para desarrolladores
 
 ### Dependencias
