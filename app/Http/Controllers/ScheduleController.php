@@ -2,7 +2,7 @@
 
 namespace HorarioFI\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use Illuminate\Support\Facades\Input;
 
 use \HorarioFI\Subject;
@@ -10,8 +10,8 @@ use \HorarioFI\Group;
 use \Datetime;
 class ScheduleController extends Controller{
     public function update(){
-        $k = Input::get ( 'key' );
-        $g = Input::get ( 'group' );
+        $k = Request::input ( 'key' );
+        $g = Request::input ( 'group' );
 
         $error = false;
         do {
