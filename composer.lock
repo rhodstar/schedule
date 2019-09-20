@@ -470,7 +470,6 @@
         },
         {
             "name": "laravel/framework",
-
             "version": "v6.0.3",
             "source": {
                 "type": "git",
@@ -563,10 +562,7 @@
                 "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.0).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.6).",
                 "ext-gd": "Required to use Illuminate\\Http\\Testing\\FileFactory::image().",
-<<<<<<< HEAD
-=======
                 "ext-memcached": "Required to use the memcache cache driver.",
->>>>>>> 2c7908c01a28584fb0e77eecb5fe6a85ebca074f
                 "ext-pcntl": "Required to use all features of the queue worker.",
                 "ext-posix": "Required to use all features of the queue worker.",
                 "ext-redis": "Required to use the Redis cache and queue drivers.",
@@ -615,11 +611,7 @@
                 "framework",
                 "laravel"
             ],
-<<<<<<< HEAD
-            "time": "2019-09-03T16:44:30+00:00"
-=======
             "time": "2019-09-10T18:46:24+00:00"
->>>>>>> 2c7908c01a28584fb0e77eecb5fe6a85ebca074f
         },
         {
             "name": "laravel/tinker",
@@ -770,18 +762,6 @@
         },
         {
             "name": "monolog/monolog",
-<<<<<<< HEAD
-            "version": "1.25.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
-                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
-=======
             "version": "2.0.0",
             "source": {
                 "type": "git",
@@ -792,7 +772,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Seldaek/monolog/zipball/68545165e19249013afd1d6f7485aecff07a2d22",
                 "reference": "68545165e19249013afd1d6f7485aecff07a2d22",
->>>>>>> 2c7908c01a28584fb0e77eecb5fe6a85ebca074f
                 "shasum": ""
             },
             "require": {
@@ -860,11 +839,7 @@
                 "logging",
                 "psr-3"
             ],
-<<<<<<< HEAD
-            "time": "2019-09-06T13:49:17+00:00"
-=======
             "time": "2019-08-30T09:56:44+00:00"
->>>>>>> 2c7908c01a28584fb0e77eecb5fe6a85ebca074f
         },
         {
             "name": "nesbot/carbon",
