@@ -1,34 +1,42 @@
+'use strict';
+
 const puppeteer = require('puppeteer');
 
 const url = 'https://www.ssa.ingenieria.unam.mx/horarios.html';
 // const claves = ['406', '1672'];
+//TODO:- Fix for 1130, 1227
 const clave = '406';
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: false, slowMo: 200 });
+  // FOR DEBUGGING
+  // const browser = await puppeteer.launch({ headless: false, slowMo: 200 });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto(await url, { waitUntil: 'networkidle2' });
+  await page.goto(url, { waitUntil: 'networkidle2' });
 
-  await page.type('#clave', await clave);
+  await page.type('#clave', clave);
   await page.click('#buscar');
 
-  // document.getElementById('406').querySelector('div .col-10').textContent
   await page.waitForSelector(`#resultado${clave}`);
-  const data = await page.evaluate(() => {
-    const title = document.getElementById('406').querySelector('div .col-10')
+  const data = await page.evaluate((clave) => {
+    const title = document.getElementById(clave).querySelector('div .col-10')
       .textContent;
-    const gpos = Array.from(
+    const grupos = Array.from(
       document.querySelectorAll('table > tbody'),
     ).map((el) =>
-      Array.from(el.querySelectorAll('tr > td')).map((ell) => ell.innerHTML),
+      Array.from(el.querySelectorAll('tr > td')).map((ell) => ell.textContent),
     );
+
+    const [claveMateria, nombreMateria] = title.split('-');
+
     return {
-      title,
-      gpos,
+      clave: parseInt(claveMateria.trim(), 10),
+      materia: nombreMateria.trim(),
+      grupos: grupos.filter((gpo) => gpo.length !== 0),
     };
-  });
+  }, clave);
+
   console.log(data);
-  await page.screenshot({ path: `${await clave}.png` });
 
   await browser.close();
 })();
