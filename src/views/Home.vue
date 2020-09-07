@@ -144,7 +144,7 @@
           </div>
           <div
             class="subject"
-            v-for="(materia, i) in materiasFlat"
+            v-for="(materia, i) in getActivities"
             :key="`materia-${i}`"
             :style="[calculatePosition(materia), colorBox(materia)]"
           >
@@ -167,7 +167,7 @@
                 >
                   <v-icon>mdi-palette</v-icon>
                 </v-btn>
-                <v-btn icon color="danger" @click="deleteSubject(materia)">
+                <v-btn icon color="danger" @click="deleteActivity(materia)">
                   <v-icon>mdi-delete</v-icon>
                 </v-btn>
               </div>
@@ -180,6 +180,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import Time from '../common/time';
 import {
   sumTimes,
@@ -206,153 +207,17 @@ export default {
     days: daysEnum,
     startTime: new Time(7, 0),
     endTime: new Time(22, 0),
-    // Este arreglo no debe contener inconsistencias
-    materias: [
-      {
-        clave: '2947',
-        grupo: 1,
-        name: 'BASES DE DATOS DISTRIBUIDAS',
-        profesor: 'ING. JORGE ALBERTO RODRIGUEZ CAMPOS',
-        horarios: [
-          {
-            start: new Time(9, 0),
-            end: new Time(11, 0),
-            day: daysEnum.MAR,
-          },
-          {
-            start: new Time(9, 0),
-            end: new Time(11, 0),
-            day: daysEnum.JUE,
-          },
-        ],
-        extras: {
-          color: 'rgba(194,246,154,0.5)',
-        },
-      },
-      {
-        clave: '1672',
-        grupo: 3,
-        name: 'MICROCOMPUTADORAS',
-        profesor: 'M.I. JOSE ANTONIO DE JESUS ARREDONDO GARZA',
-        horarios: [
-          {
-            start: new Time(7, 0),
-            end: new Time(8, 30),
-            day: daysEnum.MAR,
-          },
-          {
-            start: new Time(7, 0),
-            end: new Time(8, 30),
-            day: daysEnum.JUE,
-          },
-        ],
-        extras: {
-          color: 'rgba(224,84,84,0.8)',
-        },
-      },
-      {
-        clave: '2080',
-        grupo: 10,
-        name: 'RECURSOS Y NECESIDADES DE MEXICO',
-        profesor: 'M.I. JOSE AUGUSTO RAMON GONZALEZ',
-        horarios: [
-          {
-            start: new Time(11, 0),
-            end: new Time(13, 0),
-            day: daysEnum.MAR,
-          },
-          {
-            start: new Time(11, 0),
-            end: new Time(13, 0),
-            day: daysEnum.JUE,
-          },
-        ],
-        extras: {
-          color: 'rgba(73,255,22,0.8)',
-        },
-      },
-      {
-        clave: '1055',
-        grupo: 5,
-        name: 'LITERATURA HISPANOAMERICANA CONTEMPORANEA',
-        profesor:
-          'LIC. MARIA DE GUADALUPE FLOR DIAZ DE LEON FERNANDEZ DE CASTRO',
-        horarios: [
-          {
-            start: new Time(9, 0),
-            end: new Time(11, 0),
-            day: daysEnum.LUN,
-          },
-          {
-            start: new Time(9, 0),
-            end: new Time(11, 0),
-            day: daysEnum.MIE,
-          },
-        ],
-        extras: {
-          color: 'rgba(214,255,0,0.9)',
-        },
-      },
-      {
-        clave: '2929',
-        grupo: 1,
-        name: 'BASES DE DATOS AVANZADAS',
-        profesor: 'ING. JORGE ALBERTO RODRIGUEZ CAMPOS',
-        horarios: [
-          {
-            start: new Time(7, 0),
-            end: new Time(9, 0),
-            day: daysEnum.LUN,
-          },
-          {
-            start: new Time(7, 0),
-            end: new Time(9, 0),
-            day: daysEnum.MIE,
-          },
-        ],
-        extras: {
-          color: 'rgba(0,0,255,0.5)',
-        },
-      },
-      {
-        clave: '2932',
-        grupo: 1,
-        name: 'ANALISIS Y PROCESAMIENTO INTELIGENTE DE TEXTOS',
-        profesor: 'M.P. OCTAVIO AUGUSTO SANCHEZ VELAZQUEZ',
-        horarios: [
-          {
-            start: new Time(7, 0),
-            end: new Time(11, 0),
-            day: daysEnum.VIE,
-          },
-        ],
-        extras: {
-          color: 'rgba(235,41,187,0.7)',
-        },
-      },
-    ],
   }),
   computed: {
-    materiasFlat() {
-      const subjectTmp = [];
-      this.materias.forEach((m) => {
-        m.horarios.forEach((h) => {
-          subjectTmp.push({
-            clave: m.clave,
-            grupo: m.grupo,
-            name: m.name,
-            profesor: m.profesor,
-            start: h.start,
-            end: h.end,
-            day: h.day,
-            extras: m.extras,
-          });
-        });
-      });
-      return subjectTmp;
-    },
+    ...mapGetters('timetable', ['getActivities', 'isActivityInto']),
   },
   methods: {
+    // ...mapMutations('timetable', ['isActivityInto']),
+    ...mapActions('timetable', [
+      'deleteActivity',
+      'addActivity',
+      'updateActivities',
+    ]),
     leftSchedule(index) {
       const startRow = index + 1; // +1 por el header
       const endRow = startRow + 1;
@@ -415,21 +280,22 @@ export default {
         horarios: grupo.horarios,
         extras: { color: 'rgba(255,255,255,0)' },
       };
-      // Add constraints to check if is add subject is possible
-      if (!this.overlaps(materia)) {
-        this.materias.push(materia);
-        this.materiaResultado = [];
-        this.dialog = false;
-        this.showResultado = false;
-        this.message = 'Materia agregada';
-        this.snackbar = true;
+      if (!this.isActivityInto(materia)) {
+        if (!this.overlaps(materia)) {
+          this.addActivity(materia);
+          this.materiaResultado = [];
+          this.dialog = false;
+          this.showResultado = false;
+          this.message = 'Materia agregada';
+          this.snackbar = true;
+        } else {
+          this.message = 'La materia se translapa con otras';
+          this.snackbar = true;
+        }
       } else {
-        this.message = 'La materia se translapa con otras';
+        this.message = 'La materia ya se había agregado';
         this.snackbar = true;
       }
-    },
-    deleteSubject(materia) {
-      this.materias = this.materias.filter((m) => m.clave !== materia.clave);
     },
     boxesOverlap(h1, h2) {
       if (h1.day === h2.day) {
@@ -443,7 +309,7 @@ export default {
     overlaps(materia) {
       let overlap = false;
       materia.horarios.forEach((h) => {
-        this.materiasFlat.forEach((m) => {
+        this.getActivities.forEach((m) => {
           let resItOverlap = null;
           if (oneLessThan(h.start, m.end)) {
             resItOverlap = this.boxesOverlap(h, {
@@ -487,23 +353,8 @@ export default {
   },
   watch: {
     pickedColorBox(nc) {
-      // const color = `rgba(${nc.rgba.r},${nc.rgba.g},${nc.rgba.b},0.5)`;
       const color = `rgba(${nc.rgba.r},${nc.rgba.g},${nc.rgba.b},${nc.rgba.a})`;
-      this.materias = this.materias.map((m) => {
-        if (m.clave === this.pickedSubject.clave) {
-          return {
-            clave: m.clave,
-            grupo: m.grupo,
-            name: m.name,
-            profesor: m.profesor,
-            horarios: m.horarios,
-            extras: {
-              color,
-            },
-          };
-        }
-        return m;
-      });
+      this.updateActivities({ activity: this.pickedSubject, color });
     },
   },
 };

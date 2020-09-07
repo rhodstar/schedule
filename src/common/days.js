@@ -1,4 +1,4 @@
-export default {
+const daysEnum = {
   LUN: 'Lunes',
   MAR: 'Martes',
   MIE: 'Miércoles',
@@ -6,3 +6,5 @@ export default {
   VIE: 'Viernes',
   SAB: 'Sábado',
 };
+
+export default daysEnum;
