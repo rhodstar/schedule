@@ -50,25 +50,29 @@ if (!clave || isNaN(parseInt(clave))) {
       horas1: gpo[4],
       dias1: gpo[5],
       cupo: gpo[6],
+      vacantes: gpo[7],
       // salon1: gpo[7]
     };
 
-    if (gpo.length > 7) {
+    if (gpo.length > 8) {
       if (gpo[7] === 'T' || gpo === 'L') {
-        grupo.tipo2 = gpo[7];
+        grupo.tipo2 = gpo[8];
         grupo.horas2 = gpo[8];
-        grupo.dias2 = gpo[9];
+        grupo.dias2 = gpo[910];
         // grupos.salon2 = gpo[10];
       } else {
         grupo.tipo2 = gpo[3];
-        grupo.horas2 = gpo[7];
-        grupo.dias2 = gpo[8];
+        grupo.horas2 = gpo[8];
+        grupo.dias2 = gpo[9];
       }
     }
     grupos.push(grupo);
   });
 
   grupos = grupos.filter((gpo) => gpo.clave === data.clave);
+
+  // console.log(grupos);
+  // process.exit(1);
 
   const groupsWithSchedule = [];
 
