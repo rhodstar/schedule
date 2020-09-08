@@ -1,11 +1,14 @@
-'use strict';
-
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 const url = 'https://www.ssa.ingenieria.unam.mx/horarios.html';
-// const claves = ['406', '1672'];
-//TODO:- Fix for 1130, 1227
-const clave = '1227';
+
+const clave = process.argv[2];
+
+if (!clave || isNaN(parseInt(clave))) {
+  console.error('Please enter a numeric amount as an argument');
+  process.exit(1);
+}
 
 (async () => {
   // FOR DEBUGGING
@@ -23,9 +26,7 @@ const clave = '1227';
       .textContent;
     const grupos = Array.from(
       document.querySelectorAll('table > tbody'),
-    ).map((el) =>
-      Array.from(el.querySelectorAll('tr > td')).map((ell) => ell.textContent),
-    );
+    ).map((el) => Array.from(el.querySelectorAll('tr > td')).map((ell) => ell.textContent));
 
     const [claveMateria, nombreMateria] = title.split('-');
 
@@ -111,6 +112,47 @@ const clave = '1227';
     materia: data.materia,
     grupos: groupsWithSchedule,
   };
+
+  let text = `import Time from '../time';
+import daysEnum from '../days';
+
+const m${materia.clave} = {
+  clave: ${materia.clave},
+  materia: '${materia.materia}',
+  grupos: [`;
+
+  materia.grupos.forEach((g) => {
+    text += `
+    {
+      profesor: '${g.profesor}',
+      numGpo: ${g.numGpo},
+      horarios:[`;
+
+    g.horarios.forEach((h) => {
+      text += `{
+          start: new Time(${parseInt(h.start[0], 10)}, ${parseInt(h.start[1])}),
+          end: new Time(${parseInt(h.end[0], 10)}, ${parseInt(h.end[1], 10)}),
+          day: daysEnum.${h.day.toUpperCase()},
+        },
+        `;
+    });
+
+    text += ']},';
+  });
+
+  text += `
+    ],
+};
+
+export default m${materia.clave};`;
+
+  // write JSON string to a file
+  fs.writeFile(`src/common/faker/m${materia.clave}.js`, text, (err) => {
+    if (err) {
+      throw err;
+    }
+    console.log(`m${materia.clave}.js was created`);
+  });
 
   await browser.close();
 })();
