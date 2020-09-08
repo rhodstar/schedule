@@ -26,7 +26,9 @@ if (!clave || isNaN(parseInt(clave))) {
       .textContent;
     const grupos = Array.from(
       document.querySelectorAll('table > tbody'),
-    ).map((el) => Array.from(el.querySelectorAll('tr > td')).map((ell) => ell.textContent));
+    ).map((el) =>
+      Array.from(el.querySelectorAll('tr > td')).map((ell) => ell.textContent),
+    );
 
     const [claveMateria, nombreMateria] = title.split('-');
 
@@ -52,10 +54,16 @@ if (!clave || isNaN(parseInt(clave))) {
     };
 
     if (gpo.length > 7) {
-      grupo.tipo2 = gpo[7];
-      grupo.horas2 = gpo[8];
-      grupo.dias2 = gpo[9];
-      // grupos.salon2 = gpo[10];
+      if (gpo[7] === 'T' || gpo === 'L') {
+        grupo.tipo2 = gpo[7];
+        grupo.horas2 = gpo[8];
+        grupo.dias2 = gpo[9];
+        // grupos.salon2 = gpo[10];
+      } else {
+        grupo.tipo2 = gpo[3];
+        grupo.horas2 = gpo[7];
+        grupo.dias2 = gpo[8];
+      }
     }
     grupos.push(grupo);
   });
