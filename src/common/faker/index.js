@@ -1,0 +1,18 @@
+import m1672 from './m1672';
+import m2947 from './m2947';
+import m1055 from './m1055';
+import m2929 from './m2929';
+import m2932 from './m2932';
+
+export default [
+  // MICROCOMPUTADORAS (1672)
+  m1672,
+  // BASES DE DATOS DISTRIBUIDAS (2947)
+  m2947,
+  // LITERATURA HISPANOAMERICANA CONTEMPORANEA (1055)
+  m1055,
+  // BASES DE DATOS AVANZADAS (2929)
+  m2929,
+  // ANALISIS Y PROCESAMIENTO INTELIGENTE DE TEXTOS (2932)
+  m2932,
+];
