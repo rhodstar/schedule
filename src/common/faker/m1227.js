@@ -1,28 +1,33 @@
 import Time from '../time';
 import daysEnum from '../days';
 
-const m1055 = {
-  clave: 1055,
-  materia: 'LITERATURA HISPANOAMERICANA CONTEMPORANEA',
+const m1227 = {
+  clave: 1227,
+  materia: 'ESTRUCTURA DE DATOS Y ALGORITMOS I',
   grupos: [
     {
-      profesor: 'ING. JESUS PEREZ ESQUIVEL',
+      profesor: 'M.I. EDGAR TISTA GARCIA',
       numGpo: 1,
       horarios: [
         {
           start: new Time(7, 0),
           end: new Time(9, 0),
-          day: daysEnum.LUN,
+          day: daysEnum.MIE,
         },
         {
           start: new Time(7, 0),
           end: new Time(9, 0),
-          day: daysEnum.MIE,
+          day: daysEnum.VIE,
+        },
+        {
+          start: new Time(7, 0),
+          end: new Time(9, 0),
+          day: daysEnum.LUN,
         },
       ],
     },
     {
-      profesor: 'ING. PABLO GARCIA Y COLOME',
+      profesor: 'ING. PATRICIA DEL VALLE MORALES',
       numGpo: 2,
       horarios: [
         {
@@ -35,11 +40,37 @@ const m1055 = {
           end: new Time(9, 0),
           day: daysEnum.JUE,
         },
+        {
+          start: new Time(7, 0),
+          end: new Time(9, 0),
+          day: daysEnum.LUN,
+        },
       ],
     },
     {
-      profesor: 'ING. JESUS PEREZ ESQUIVEL',
+      profesor: 'M.I. GUSTAVO VERGARA GONZAGA',
       numGpo: 3,
+      horarios: [
+        {
+          start: new Time(7, 0),
+          end: new Time(9, 0),
+          day: daysEnum.MAR,
+        },
+        {
+          start: new Time(7, 0),
+          end: new Time(9, 0),
+          day: daysEnum.JUE,
+        },
+        {
+          start: new Time(7, 0),
+          end: new Time(9, 0),
+          day: daysEnum.MIE,
+        },
+      ],
+    },
+    {
+      profesor: 'M.I. ELBA KAREN SAENZ GARCIA',
+      numGpo: 4,
       horarios: [
         {
           start: new Time(9, 0),
@@ -51,26 +82,15 @@ const m1055 = {
           end: new Time(11, 0),
           day: daysEnum.JUE,
         },
-      ],
-    },
-    {
-      profesor: 'MTRA. VICTORIA RAMIRO ESTEBAN',
-      numGpo: 4,
-      horarios: [
         {
           start: new Time(9, 0),
           end: new Time(11, 0),
           day: daysEnum.LUN,
         },
-        {
-          start: new Time(9, 0),
-          end: new Time(11, 0),
-          day: daysEnum.MIE,
-        },
       ],
     },
     {
-      profesor: 'LIC. MARIA DE GUADALUPE FLOR DIAZ DE LEON FERNANDEZ DE CASTRO',
+      profesor: 'FIS. RAYMUNDO HUGO RANGEL GUTIERREZ',
       numGpo: 5,
       horarios: [
         {
@@ -83,211 +103,144 @@ const m1055 = {
           end: new Time(11, 0),
           day: daysEnum.MIE,
         },
-      ],
-    },
-    {
-      profesor: 'LIC. TEHNY CAROLINA RUIZ PRIMO MARTINEZ',
-      numGpo: 6,
-      horarios: [
         {
-          start: new Time(11, 0),
-          end: new Time(15, 0),
-          day: daysEnum.VIE,
+          start: new Time(9, 0),
+          end: new Time(11, 0),
+          day: daysEnum.MAR,
         },
       ],
     },
     {
-      profesor: 'DRA. MARIA EUGENIA NEGRIN MUÑOZ',
+      profesor: 'ING. LINDA MARIA DEL CARMEN REY HERNANDEZ',
+      numGpo: 6,
+      horarios: [
+        {
+          start: new Time(11, 0),
+          end: new Time(13, 0),
+          day: daysEnum.MIE,
+        },
+        {
+          start: new Time(11, 0),
+          end: new Time(13, 0),
+          day: daysEnum.VIE,
+        },
+        {
+          start: new Time(11, 0),
+          end: new Time(13, 0),
+          day: daysEnum.LUN,
+        },
+      ],
+    },
+    {
+      profesor: 'DR. ISMAEL EVERARDO BARCENAS PATIÑO',
       numGpo: 7,
       horarios: [
         {
           start: new Time(11, 0),
           end: new Time(13, 0),
+          day: daysEnum.LUN,
+        },
+        {
+          start: new Time(11, 0),
+          end: new Time(13, 0),
           day: daysEnum.MIE,
         },
         {
           start: new Time(11, 0),
           end: new Time(13, 0),
-          day: daysEnum.VIE,
+          day: daysEnum.JUE,
         },
       ],
     },
     {
-      profesor: 'MTRA. VICTORIA RAMIRO ESTEBAN',
+      profesor: 'DR. MARCO ANTONIO NEGRETE VILLANUEVA',
       numGpo: 8,
       horarios: [
         {
-          start: new Time(11, 0),
-          end: new Time(13, 0),
+          start: new Time(13, 0),
+          end: new Time(15, 0),
           day: daysEnum.LUN,
         },
         {
-          start: new Time(11, 0),
-          end: new Time(13, 0),
+          start: new Time(13, 0),
+          end: new Time(15, 0),
           day: daysEnum.MIE,
+        },
+        {
+          start: new Time(13, 0),
+          end: new Time(15, 0),
+          day: daysEnum.JUE,
         },
       ],
     },
     {
-      profesor: 'MES. MARGARITA PUEBLA CADENA',
+      profesor: 'M.I. FRANCISCO JAVIER RODRIGUEZ GARCIA',
       numGpo: 9,
       horarios: [
         {
-          start: new Time(11, 0),
-          end: new Time(13, 0),
+          start: new Time(13, 0),
+          end: new Time(15, 0),
           day: daysEnum.LUN,
         },
         {
-          start: new Time(11, 0),
-          end: new Time(13, 0),
+          start: new Time(13, 0),
+          end: new Time(15, 0),
           day: daysEnum.MIE,
+        },
+        {
+          start: new Time(13, 0),
+          end: new Time(15, 0),
+          day: daysEnum.VIE,
         },
       ],
     },
     {
-      profesor: 'LIC. ADRIANA CONTRERAS GARCÍA',
+      profesor: 'M.C. GABRIEL CASTILLO HERNANDEZ',
       numGpo: 10,
       horarios: [
         {
-          start: new Time(11, 0),
-          end: new Time(13, 0),
-          day: daysEnum.MAR,
+          start: new Time(15, 0),
+          end: new Time(17, 0),
+          day: daysEnum.LUN,
         },
         {
-          start: new Time(11, 0),
-          end: new Time(13, 0),
+          start: new Time(15, 0),
+          end: new Time(17, 0),
+          day: daysEnum.MIE,
+        },
+        {
+          start: new Time(15, 0),
+          end: new Time(17, 0),
           day: daysEnum.JUE,
         },
       ],
     },
     {
-      profesor: 'MTRA. SAMARI PAULINA GARCIA Y COLOME GONGORA',
+      profesor: 'FIS. ADAN ZEPEDA GOROSTIZA',
       numGpo: 11,
       horarios: [
         {
-          start: new Time(11, 0),
-          end: new Time(13, 0),
-          day: daysEnum.MAR,
+          start: new Time(17, 0),
+          end: new Time(19, 0),
+          day: daysEnum.LUN,
         },
         {
-          start: new Time(11, 0),
-          end: new Time(13, 0),
-          day: daysEnum.JUE,
+          start: new Time(17, 0),
+          end: new Time(19, 0),
+          day: daysEnum.MIE,
+        },
+        {
+          start: new Time(17, 0),
+          end: new Time(19, 0),
+          day: daysEnum.MAR,
         },
       ],
     },
     {
-      profesor: 'MTRA. ANA LUISA ALBERRO LIZON',
+      profesor: 'ING. MANUEL CASTAÑEDA CASTAÑEDA',
       numGpo: 12,
       horarios: [
         {
-          start: new Time(13, 0),
-          end: new Time(15, 0),
-          day: daysEnum.MAR,
-        },
-        {
-          start: new Time(13, 0),
-          end: new Time(15, 0),
-          day: daysEnum.JUE,
-        },
-      ],
-    },
-    {
-      profesor: 'DRA. ROCÍO OLIVARES ZORRILLA',
-      numGpo: 13,
-      horarios: [
-        {
-          start: new Time(13, 0),
-          end: new Time(15, 0),
-          day: daysEnum.LUN,
-        },
-        {
-          start: new Time(13, 0),
-          end: new Time(15, 0),
-          day: daysEnum.MIE,
-        },
-      ],
-    },
-    {
-      profesor: 'DRA. MARIA EUGENIA NEGRIN MUÑOZ',
-      numGpo: 14,
-      horarios: [
-        {
-          start: new Time(13, 0),
-          end: new Time(15, 0),
-          day: daysEnum.MIE,
-        },
-        {
-          start: new Time(13, 0),
-          end: new Time(15, 0),
-          day: daysEnum.VIE,
-        },
-      ],
-    },
-    {
-      profesor: 'MTRO JULIO ENRIQUE GORDILLO TORRES',
-      numGpo: 15,
-      horarios: [
-        {
-          start: new Time(15, 0),
-          end: new Time(17, 0),
-          day: daysEnum.LUN,
-        },
-        {
-          start: new Time(15, 0),
-          end: new Time(17, 0),
-          day: daysEnum.VIE,
-        },
-      ],
-    },
-    {
-      profesor: 'LIC. TEHNY CAROLINA RUIZ PRIMO MARTINEZ',
-      numGpo: 16,
-      horarios: [
-        {
-          start: new Time(15, 0),
-          end: new Time(19, 0),
-          day: daysEnum.VIE,
-        },
-      ],
-    },
-    {
-      profesor: 'LIC ANA YANTZIN PEREZ CORTES',
-      numGpo: 17,
-      horarios: [
-        {
-          start: new Time(15, 0),
-          end: new Time(17, 0),
-          day: daysEnum.MAR,
-        },
-        {
-          start: new Time(15, 0),
-          end: new Time(17, 0),
-          day: daysEnum.JUE,
-        },
-      ],
-    },
-    {
-      profesor: 'MTRO JULIO ENRIQUE GORDILLO TORRES',
-      numGpo: 18,
-      horarios: [
-        {
-          start: new Time(15, 0),
-          end: new Time(17, 0),
-          day: daysEnum.MAR,
-        },
-        {
-          start: new Time(15, 0),
-          end: new Time(17, 0),
-          day: daysEnum.JUE,
-        },
-      ],
-    },
-    {
-      profesor: 'LIC ANA YANTZIN PEREZ CORTES',
-      numGpo: 19,
-      horarios: [
-        {
           start: new Time(17, 0),
           end: new Time(19, 0),
           day: daysEnum.MAR,
@@ -297,25 +250,14 @@ const m1055 = {
           end: new Time(19, 0),
           day: daysEnum.JUE,
         },
-      ],
-    },
-    {
-      profesor: 'DR. ANTONIO DE JESUS CASTRO RANGEL',
-      numGpo: 20,
-      horarios: [
         {
-          start: new Time(19, 0),
-          end: new Time(21, 0),
-          day: daysEnum.MAR,
-        },
-        {
-          start: new Time(19, 0),
-          end: new Time(21, 0),
-          day: daysEnum.JUE,
+          start: new Time(17, 0),
+          end: new Time(19, 0),
+          day: daysEnum.VIE,
         },
       ],
     },
   ],
 };
 
-export default m1055;
+export default m1227;
