@@ -15,8 +15,16 @@ import m2080 from './m2080';
 import m2931 from './m2931';
 import m6598 from './m6598';
 import m6672 from './m6672';
+import m1433 from './m1433';
+import m1414 from './m1414';
+import m1590 from './m1590';
+import m6590 from './m6590';
+import m2928 from './m2928';
+import m2930 from './m2930';
+import m1916 from './m1916';
 
 export default [
+  // ROD
   // BASES DE DATOS DISTRIBUIDAS (2947)
   m2947,
   // BASES DE DATOS AVANZADAS (2929)
@@ -37,7 +45,19 @@ export default [
   m6598,
   // LAB. MICROS
   m6672,
-  // m1414, m1433,
+  // Proc img
+  m1916,
+  // cripto
+  m2930,
+
+  // OTHER
+  m1590,
+  m6590,
+  m2928,
+
+  // MIKE
+  m1414,
+  m1433,
   m6414,
   m1443,
   m129,

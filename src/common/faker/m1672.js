@@ -53,6 +53,38 @@ const m1672 = {
         },
       ],
     },
+    {
+      profesor: 'ING. MOISES MELENDEZ REYES',
+      numGpo: 4,
+      horarios: [
+        {
+          start: new Time(16, 0),
+          end: new Time(17, 30),
+          day: daysEnum.MAR,
+        },
+        {
+          start: new Time(16, 0),
+          end: new Time(17, 30),
+          day: daysEnum.JUE,
+        },
+      ],
+    },
+    {
+      profesor: 'M.I. ANTONIO SALVA CALLEJA',
+      numGpo: 5,
+      horarios: [
+        {
+          start: new Time(17, 30),
+          end: new Time(19, 0),
+          day: daysEnum.MAR,
+        },
+        {
+          start: new Time(17, 30),
+          end: new Time(19, 0),
+          day: daysEnum.JUE,
+        },
+      ],
+    },
   ],
 };
 
