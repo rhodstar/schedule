@@ -1,4 +1,13 @@
-# timetable
+# Schedule
+
+```sh
+Septiembre 2020
+Vue 2.6.11 | puppeteer 5.2
+```
+
+![proof](assets/proof.jpg)
+
+![proof2](assets/proof2.png)
 
 ## Project setup
 
@@ -30,10 +39,16 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Future features
 
-- Change color of subjects
-- Add extra activities: gym, language, ...
+- Add extra activities: gym, language, ... [PROCESS]
+- Fix cell layout: show start and end time
+- Change group button
+- Print (Download) button
+- Take homework notes
+  - Scale to a todo list with calendar and more features
+- Save zoom Links
+- Add sidebar / header
+- Share schedules
+- Login
 - Fork function
 - Store schedule in db
-- Login
 - Fork friends schedule
-- Share schedules
