@@ -26,9 +26,7 @@ if (!clave || isNaN(parseInt(clave))) {
       .textContent;
     const grupos = Array.from(
       document.querySelectorAll('table > tbody'),
-    ).map((el) =>
-      Array.from(el.querySelectorAll('tr > td')).map((ell) => ell.textContent),
-    );
+    ).map((el) => Array.from(el.querySelectorAll('tr > td')).map((ell) => ell.textContent));
 
     const [claveMateria, nombreMateria] = title.split('-');
 
@@ -49,13 +47,13 @@ if (!clave || isNaN(parseInt(clave))) {
       tipo1: gpo[3],
       horas1: gpo[4],
       dias1: gpo[5],
-      cupo: gpo[6],
-      vacantes: gpo[7],
-      // salon1: gpo[7]
+      salon1: gpo[6],
+      cupo: gpo[7],
+      vacantes1: gpo[8],
     };
 
-    if (gpo.length > 8) {
-      if (gpo[7] === 'T' || gpo === 'L') {
+    if (gpo.length > 9) {
+      if (gpo[8] === 'T' || gpo[8] === 'L') {
         grupo.tipo2 = gpo[8];
         grupo.horas2 = gpo[8];
         grupo.dias2 = gpo[910];

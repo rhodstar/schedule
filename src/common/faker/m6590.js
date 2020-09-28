@@ -6,17 +6,6 @@ const m6590 = {
   materia: 'LAB. COMPUTACION GRAFICA E INTERACCION HUMANO',
   grupos: [
     {
-      profesor: 'ING. JOSE ROQUE ROMAN GUADARRAMA',
-      numGpo: 1,
-      horarios: [
-        {
-          start: new Time(11, 0),
-          end: new Time(13, 0),
-          day: daysEnum.LUN,
-        },
-      ],
-    },
-    {
       profesor: 'ING. LUIS SERGIO VALENCIA CASTRO',
       numGpo: 2,
       horarios: [
@@ -46,17 +35,6 @@ const m6590 = {
           start: new Time(13, 0),
           end: new Time(15, 0),
           day: daysEnum.MIE,
-        },
-      ],
-    },
-    {
-      profesor: 'ING. LUIS SERGIO VALENCIA CASTRO',
-      numGpo: 5,
-      horarios: [
-        {
-          start: new Time(11, 0),
-          end: new Time(13, 0),
-          day: daysEnum.JUE,
         },
       ],
     },
@@ -101,6 +79,39 @@ const m6590 = {
           start: new Time(11, 0),
           end: new Time(13, 0),
           day: daysEnum.MIE,
+        },
+      ],
+    },
+    {
+      profesor: 'M.I. SERGIO TEODORO VITE',
+      numGpo: 10,
+      horarios: [
+        {
+          start: new Time(15, 0),
+          end: new Time(17, 0),
+          day: daysEnum.MAR,
+        },
+      ],
+    },
+    {
+      profesor: 'ING. JOSE ROQUE ROMAN GUADARRAMA',
+      numGpo: 1,
+      horarios: [
+        {
+          start: new Time(11, 0),
+          end: new Time(13, 0),
+          day: daysEnum.LUN,
+        },
+      ],
+    },
+    {
+      profesor: 'ING. LUIS SERGIO VALENCIA CASTRO',
+      numGpo: 5,
+      horarios: [
+        {
+          start: new Time(11, 0),
+          end: new Time(13, 0),
+          day: daysEnum.JUE,
         },
       ],
     },

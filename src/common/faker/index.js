@@ -22,6 +22,7 @@ import m6590 from './m6590';
 import m2928 from './m2928';
 import m2930 from './m2930';
 import m1916 from './m1916';
+import m1789 from './m1789';
 
 export default [
   // ROD
@@ -54,6 +55,7 @@ export default [
   m1590,
   m6590,
   m2928,
+  m1789,
 
   // MIKE
   m1414,
