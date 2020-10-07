@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
-    <!-- Message snackbar component -->
+    <!-- snackNotificationMessage snackbar component -->
     <v-snackbar v-model="snackbar">
-      {{ message }}
+      {{ snackNotificationMessage }}
       <template v-slot:action="{ attrs }">
         <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
           Close
@@ -111,10 +111,62 @@
           </div>
         </v-card-text>
         <v-card-text v-if="dialogTab === 1">
-          <div>
-            <h4>Feature for future version</h4>
-            <!-- <v-text-field label="Nombre actividad" required></v-text-field> -->
-          </div>
+          <v-row>
+            <v-col md="6" sm="12">
+              <v-text-field label="Id actividad" required></v-text-field>
+              <v-text-field label="Nombre actividad" required></v-text-field>
+              <v-text-field label="Grupo"></v-text-field>
+              <v-text-field label="Profesor"></v-text-field>
+            </v-col>
+            <v-col md="6" sm="12" class="text-center">
+              <v-combobox
+                v-model="diasselect"
+                :items="dias"
+                label="Horario"
+                multiple
+                chips
+              >
+                <template v-slot:selection="data">
+                  <v-chip
+                    :key="JSON.stringify(data.item)"
+                    v-bind="data.attrs"
+                    :input-value="data.selected"
+                    :disabled="data.disabled"
+                    @click:close="data.parent.selectItem(data.item)"
+                  >
+                    <v-avatar
+                      class="accent white--text"
+                      left
+                      v-text="data.item.slice(0, 1).toUpperCase()"
+                    ></v-avatar>
+                    {{ data.item }}
+                  </v-chip>
+                </template>
+              </v-combobox>
+              <div>Hora inicio</div>
+              <v-time-picker
+                v-model="horaInicio"
+                landscape
+                width="180"
+                class="mb-5"
+              ></v-time-picker>
+              <div>Hora fin</div>
+              <v-time-picker
+                v-model="horaFin"
+                landscape
+                width="180"
+              ></v-time-picker>
+            </v-col>
+            <v-col md="12" sm="12">
+              <v-btn
+                class="ma-2"
+                outlined
+                color="indigo"
+                @click="agregarActividad"
+                >Agregar</v-btn
+              >
+            </v-col>
+          </v-row>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -190,11 +242,20 @@ import {
   oneLessThan,
 } from '../common/scheduler';
 import daysEnum from '../common/days';
+// Esta es nuestra base de datos temporal (para pruebas rápidas)
 import bd from '../common/faker';
 
 export default {
   data: () => ({
-    message: '',
+    // diasselect, dias, horarioInicio, horaFin
+    // son variables para la funcionalidad de agregar
+    // actividad, son variables temporales, se removeran a terminar pruebas
+    // estan aqui porque no habia considerado el trabajo colaborativo.
+    diasselect: ['Lunes', 'Martes'],
+    dias: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+    horaInicio: null,
+    horaFin: null,
+    snackNotificationMessage: '',
     tfclave: '',
     materiaResultado: [],
     dialog: false,
@@ -205,6 +266,7 @@ export default {
     snackbar: false,
     showResultado: false,
     days: daysEnum,
+    // startTime y endTime indica desde que hora se pinta el timetable
     startTime: new Time(7, 0),
     endTime: new Time(22, 0),
   }),
@@ -286,14 +348,14 @@ export default {
           this.materiaResultado = [];
           this.dialog = false;
           this.showResultado = false;
-          this.message = 'Materia agregada';
+          this.snackNotificationMessage = 'Materia agregada';
           this.snackbar = true;
         } else {
-          this.message = 'La materia se translapa con otras';
+          this.snackNotificationMessage = 'La materia se translapa con otras';
           this.snackbar = true;
         }
       } else {
-        this.message = 'La materia ya se había agregado';
+        this.snackNotificationMessage = 'La materia ya se había agregado';
         this.snackbar = true;
       }
     },
@@ -342,12 +404,24 @@ export default {
           [this.materiaResultado] = resultadoMateria;
           this.showResultado = true;
         } else {
-          this.message = 'Materia no encontrada';
+          this.snackNotificationMessage = 'Materia no encontrada';
           this.snackbar = true;
         }
         this.tfclave = '';
       } else {
         console.log('La clave debe ser mayor de 2 caracteres');
+      }
+    },
+    agregarActividad() {
+      if (
+        this.diasselect.length === 0 ||
+        this.horaInicio === null ||
+        this.horaFin === null
+      ) {
+        this.snackNotificationMessage = 'Revisa los campos';
+        this.snackbar = true;
+      } else {
+        console.log('Vamos bine');
       }
     },
   },
