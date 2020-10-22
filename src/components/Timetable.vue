@@ -21,15 +21,27 @@
       {{ numberToTime(n) }}
     </div>
     <!-- End of left times -->
+    <!-- Render all activities -->
+    <ActivityManager
+      v-for="(activity, i) in getActivities"
+      :key="`materia-${i}`"
+      :activity="activity"
+      :startTime="startTime"
+    />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import ActivityManager from './timetable/ActivityManager.vue';
 import daysEnum from '../common/days';
 import Time from '../common/time';
 import { sumTimes, numToTime } from '../common/scheduler';
 
 export default {
+  components: {
+    ActivityManager,
+  },
   data: () => ({
     /**
      * daysEmum asigned to days let us retrive the enum and load it as
@@ -47,6 +59,9 @@ export default {
     endTime: new Time(22, 0),
     lapsus: 60,
   }),
+  computed: {
+    ...mapGetters('timetable', ['getActivities']),
+  },
   methods: {
     /**
      * Method to return styles that will be injected in a HTML component to
