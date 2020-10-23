@@ -30,10 +30,15 @@
       @pickActivityColor="pickActivityColor"
     />
     <!-- Dialogs for managin Activities -->
-    <activity-color
+    <activity-color-dialog
       :activity="activityPicked"
       :pickerDialog="pickerDialog"
       @refreshPickerVariable="setPickerDialogToFalse"
+    />
+    <!-- Dialog panel for adding and searching activities/subjects -->
+    <panel-dialog
+      :panelDialog="panelDialog"
+      @refreshPanelVariable="refreshPanelVariable"
     />
   </div>
 </template>
@@ -41,7 +46,8 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import ActivityManager from './timetable/ActivityManager.vue';
-import ActivityColor from './timetable/ActivityColor.vue';
+import ActivityColorDialog from './timetable/ActivityColorDialog.vue';
+import PanelDialog from './timetable/PanelDialog.vue';
 import daysEnum from '../common/days';
 import Time from '../common/time';
 import { sumTimes, numToTime } from '../common/scheduler';
@@ -49,8 +55,10 @@ import { sumTimes, numToTime } from '../common/scheduler';
 export default {
   components: {
     ActivityManager,
-    ActivityColor,
+    ActivityColorDialog,
+    PanelDialog,
   },
+  props: ['panelDialog'],
   data: () => ({
     /**
      * daysEmum asigned to days let us retrive the enum and load it as
@@ -68,7 +76,7 @@ export default {
     endTime: new Time(22, 0),
     lapsus: 60,
     /**
-     * Following three variables control the color picker dialog
+     * Following two variables control the color picker dialog
      */
     pickerDialog: false,
     activityPicked: null,
@@ -119,6 +127,9 @@ export default {
     },
     setPickerDialogToFalse() {
       this.pickerDialog = false;
+    },
+    refreshPanelVariable() {
+      this.$emit('refreshPanelVariable');
     },
   },
 };

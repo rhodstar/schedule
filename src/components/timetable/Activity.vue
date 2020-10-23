@@ -25,7 +25,7 @@ export default {
   methods: {
     ...mapActions('timetable', ['deleteActivity']),
     /**
-     * Ths functions open a dialog for picking a color for activity card
+     * Ths functions emits the open dialog for picking a color for activity card
      */
     openPickerColorDialog() {
       this.$emit('pickActivityColorDialog', this.activity);

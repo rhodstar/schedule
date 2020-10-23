@@ -1,3 +1,4 @@
+// import myactivities from './myactivities';
 /** ACITITIVIES is a constant for localstorage */
 const ACTIVITIES = 'ttblact';
 
