@@ -9,6 +9,13 @@ Vue 2.6.11 | puppeteer 5.2
 
 ![proof2](assets/proof2.png)
 
+## Fast Docs
+
+En el siguiente bosquejo observamos como interactuan los 3
+componentes principales para poder renderizar un "timetable".
+
+![arch](docs/appDesign.png)
+
 ## Project setup
 
 ```
