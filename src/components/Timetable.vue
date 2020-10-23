@@ -27,13 +27,21 @@
       :key="`materia-${i}`"
       :activity="activity"
       :startTime="startTime"
+      @pickActivityColor="pickActivityColor"
+    />
+    <!-- Dialogs for managin Activities -->
+    <activity-color
+      :activity="activityPicked"
+      :pickerDialog="pickerDialog"
+      @refreshPickerVariable="setPickerDialogToFalse"
     />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import ActivityManager from './timetable/ActivityManager.vue';
+import ActivityColor from './timetable/ActivityColor.vue';
 import daysEnum from '../common/days';
 import Time from '../common/time';
 import { sumTimes, numToTime } from '../common/scheduler';
@@ -41,6 +49,7 @@ import { sumTimes, numToTime } from '../common/scheduler';
 export default {
   components: {
     ActivityManager,
+    ActivityColor,
   },
   data: () => ({
     /**
@@ -58,11 +67,17 @@ export default {
     startTime: new Time(7, 0),
     endTime: new Time(22, 0),
     lapsus: 60,
+    /**
+     * Following three variables control the color picker dialog
+     */
+    pickerDialog: false,
+    activityPicked: null,
   }),
   computed: {
     ...mapGetters('timetable', ['getActivities']),
   },
   methods: {
+    ...mapActions('timetable', ['deleteActivity']),
     /**
      * Method to return styles that will be injected in a HTML component to
      * position it on the grid
@@ -97,6 +112,13 @@ export default {
     numberToTime(n) {
       // TODO:- Explain how is n?
       return sumTimes(this.startTime, numToTime(n - 1)).print();
+    },
+    pickActivityColor(activity) {
+      this.pickerDialog = true;
+      this.activityPicked = activity;
+    },
+    setPickerDialogToFalse() {
+      this.pickerDialog = false;
     },
   },
 };

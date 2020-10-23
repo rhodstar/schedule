@@ -3,7 +3,10 @@
     class="activity"
     :style="[calculatePosition(activity), colorBox(activity)]"
   >
-    <Activity :activity="activity" />
+    <Activity
+      :activity="activity"
+      @pickActivityColorDialog="pickActivityColorDialog"
+    />
   </div>
 </template>
 
@@ -55,6 +58,9 @@ export default {
         default:
           return '2/3';
       }
+    },
+    pickActivityColorDialog(activity) {
+      this.$emit('pickActivityColor', activity);
     },
   },
 };

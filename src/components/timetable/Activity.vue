@@ -10,7 +10,7 @@
       <v-btn icon color="danger" @click="openPickerColorDialog">
         <v-icon>mdi-palette</v-icon>
       </v-btn>
-      <v-btn icon color="danger" @click="deleteActivity">
+      <v-btn icon color="danger" @click="deleteActivityTrigger">
         <v-icon>mdi-delete</v-icon>
       </v-btn>
     </div>
@@ -18,19 +18,20 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   props: ['activity'],
   methods: {
+    ...mapActions('timetable', ['deleteActivity']),
     /**
      * Ths functions open a dialog for picking a color for activity card
      */
     openPickerColorDialog() {
-      // TODO:- Define picker and and pickedSubjet, maybe propage to parent
-      // picker = true;
-      // pickedSubject = activity;
+      this.$emit('pickActivityColorDialog', this.activity);
     },
-    deleteActivity() {
-      // TODO:- Propagate to parent component
+    deleteActivityTrigger() {
+      this.deleteActivity(this.activity);
     },
   },
 };
