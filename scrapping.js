@@ -1,8 +1,14 @@
 const puppeteer = require('puppeteer');
+/**
+ * fs is for writing data into a file
+ */
 const fs = require('fs');
 
 const url = 'https://www.ssa.ingenieria.unam.mx/horarios.html';
 
+/**
+ * Catching the console argument
+ */
 const clave = process.argv[2];
 
 if (!clave || isNaN(parseInt(clave))) {
@@ -10,18 +16,48 @@ if (!clave || isNaN(parseInt(clave))) {
   process.exit(1);
 }
 
+/**
+ * self-invoke function syntaxis:
+ * (function(){
+ *    //body
+ * })();
+ * As the js engine reads the self-invoke function it is execute
+ * If needed check:
+ * https://developer.mozilla.org/en-US/docs/Glossary/IIFE
+ */
 (async () => {
-  // FOR DEBUGGING
+  /**
+   * Use commented line for debuggin purposes,
+   * it actives the browser in a non headless mode, this help us see the 
+   * algorithm workflow
+   */
   // const browser = await puppeteer.launch({ headless: false, slowMo: 200 });
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: 'networkidle2' });
 
+  /**
+   * Writing the 'clave' into the input field
+   * and clicking in search button
+   */
   await page.type('#clave', clave);
   await page.click('#buscar');
 
+  /**
+   * Remember, almost everything is asynchronous
+   * So in this case, #resultado${clave} selector doesnt exist and 
+   * we wait for it
+   */
   await page.waitForSelector(`#resultado${clave}`);
+  /**
+   * CAREFULL: page.evaluate has two params
+   *    - callback to get the data
+   *    - the callback argument, in this case 'clave'
+   */
   const data = await page.evaluate((clave) => {
+    /**
+     * After the selector renders we start collecting the information
+     */
     const title = document.getElementById(clave).querySelector('div .col-10')
       .textContent;
     const grupos = Array.from(
@@ -69,9 +105,19 @@ if (!clave || isNaN(parseInt(clave))) {
 
   grupos = grupos.filter((gpo) => gpo.clave === data.clave);
 
+  /**
+   * Uncomment the following to print the results before writing to a file
+   * The reason is because the result table changes in show columns
+   */
   // console.log(grupos);
   // process.exit(1);
 
+  /**
+   * Please before running all the code, verify the correctness of the data
+   * obtained above
+   * If everything is correct we process the data (the starting and ending 
+   * hours get split )
+   */
   const groupsWithSchedule = [];
 
   grupos.forEach((gpo) => {
@@ -117,13 +163,23 @@ if (!clave || isNaN(parseInt(clave))) {
     });
   });
 
+  /**
+   * Final build object for a subject
+   */
   const materia = {
     clave: data.clave,
     materia: data.materia,
     grupos: groupsWithSchedule,
   };
 
-  let text = `import Time from '../time';
+  /**
+   * In the future we shall write to a database
+   * 
+   * ***********************************************************************
+   *        Starts building text string for writing into a file
+   * ***********************************************************************
+   */
+  let textBuilder = `import Time from '../time';
 import daysEnum from '../days';
 
 const m${materia.clave} = {
@@ -132,14 +188,14 @@ const m${materia.clave} = {
   grupos: [`;
 
   materia.grupos.forEach((g) => {
-    text += `
+    textBuilder += `
     {
       profesor: '${g.profesor}',
       numGpo: ${g.numGpo},
       horarios:[`;
 
     g.horarios.forEach((h) => {
-      text += `{
+      textBuilder += `{
           start: new Time(${parseInt(h.start[0], 10)}, ${parseInt(h.start[1])}),
           end: new Time(${parseInt(h.end[0], 10)}, ${parseInt(h.end[1], 10)}),
           day: daysEnum.${h.day.toUpperCase()},
@@ -147,17 +203,23 @@ const m${materia.clave} = {
         `;
     });
 
-    text += ']},';
+    textBuilder += ']},';
   });
 
-  text += `
+  textBuilder += `
     ],
 };
 
 export default m${materia.clave};`;
 
-  // write JSON string to a file
-  fs.writeFile(`src/common/faker/m${materia.clave}.js`, text, (err) => {
+  /**
+   * ***********************************************************************
+   *        ENDS building text string for writing into a file
+   * ***********************************************************************
+   */
+
+  // write text string to a file
+  fs.writeFile(`src/common/faker/m${materia.clave}.js`, textBuilder, (err) => {
     if (err) {
       throw err;
     }
