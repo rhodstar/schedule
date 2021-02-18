@@ -14,6 +14,10 @@
         <v-icon>mdi-delete</v-icon>
       </v-btn>
     </div>
+    <div>
+      {{ activity.start.hours }}:{{ activity.start.minutes }} -
+      {{ activity.end.hours }}: {{ activity.end.minutes }}
+    </div>
   </div>
 </template>
 
@@ -33,6 +37,9 @@ export default {
     deleteActivityTrigger() {
       this.deleteActivity(this.activity);
     },
+  },
+  mounted() {
+    console.log(this.activity);
   },
 };
 </script>

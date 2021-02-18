@@ -1,70 +1,48 @@
-import m1672 from './m1672';
-import m2947 from './m2947';
-import m1055 from './m1055';
-import m2929 from './m2929';
-import m2932 from './m2932';
-import m129 from './m129';
-import m1413 from './m1413';
-import m1593 from './m1593';
-import m1624 from './m1624';
-import m6443 from './m6443';
-import m1443 from './m1443';
-import m6414 from './m6414';
-import m1598 from './m1598';
-import m2080 from './m2080';
-import m2931 from './m2931';
-import m6598 from './m6598';
-import m6672 from './m6672';
-import m1433 from './m1433';
-import m1414 from './m1414';
-import m1590 from './m1590';
-import m6590 from './m6590';
-import m2928 from './m2928';
+import m1858 from './m1858';
+import m1867 from './m1867';
+import m6867 from './m6867';
 import m2930 from './m2930';
+import m2933 from './m2933';
+import m2932 from './m2932';
+import m2944 from './m2944';
 import m1916 from './m1916';
-import m1789 from './m1789';
+import m2931 from './m2931';
+import m2950 from './m2950';
+import m2952 from './m2952';
+import m2958 from './m2958';
+import m2957 from './m2957';
+import m958 from './m958';
+import m757 from './m757';
+
+import m1780 from './m1780';
+import m1592 from './m1592';
+import m879 from './m879';
+import m6592 from './m6592';
+import m5879 from './m5879';
+import m558 from './m558';
+import m5558 from './m5558';
 
 export default [
-  // ROD
-  // BASES DE DATOS DISTRIBUIDAS (2947)
-  m2947,
-  // BASES DE DATOS AVANZADAS (2929)
-  m2929,
-  // ANALISIS Y PROCESAMIENTO INTELIGENTE DE TEXTOS (2932)
-  m2932,
-  // MICROCOMPUTADORAS (1672)
-  m1672,
-  // LITERATURA HISPANOAMERICANA CONTEMPORANEA (1055)
-  m1055,
-  // REDES
-  m1598,
-  // RECURSOS
-  m2080,
-  // NEG. ELECTRONICOS
-  m2931,
-  // LAB. REDES
-  m6598,
-  // LAB. MICROS
-  m6672,
-  // Proc img
-  m1916,
-  // cripto
-  m2930,
-
-  // OTHER
-  m1590,
-  m6590,
-  m2928,
-  m1789,
-
-  // MIKE
-  m1414,
-  m1433,
-  m6414,
-  m1443,
-  m129,
-  m1413,
-  m1593,
-  m1624,
-  m6443,
+  m1858, // Embebidos
+  m1867, // Arquitectura
+  m6867, // Lab. Arquitectura
+  m2930, // Criptografia
+  m2933, // Mineria datos
+  m2932, // Analisis de Textos
+  m2944, // Admin TIC
+  m1916, // Procesamiento img
+  m2931, // Negocios y web
+  m2950, // Proc lenguaje
+  m2952, // Proyecto de investig
+  m2958, // Temas III (CCNP)
+  m2957, // Temas II (Linux, Guerrero)
+  m958, // Temas selectos (BD)
+  m757, // Reconocimiento de patrones
+  m1780,
+  m1592,
+  m879,
+  m6592,
+  m5879,
+  m558,
+  m5558,
 ];

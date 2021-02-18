@@ -8,17 +8,16 @@ const m1916 = {
     {
       profesor: 'DR. BORIS ESCALANTE RAMIREZ',
       numGpo: 1,
-      horarios: [
-        {
-          start: new Time(11, 30),
-          end: new Time(13, 30),
-          day: daysEnum.MAR,
-        },
-        {
-          start: new Time(11, 30),
-          end: new Time(13, 30),
-          day: daysEnum.JUE,
-        },
+      horarios: [{
+        start: new Time(11, 0),
+        end: new Time(13, 0),
+        day: daysEnum.MAR,
+      },
+      {
+        start: new Time(11, 0),
+        end: new Time(13, 0),
+        day: daysEnum.JUE,
+      },
       ],
     },
   ],

@@ -8,33 +8,31 @@ const m2931 = {
     {
       profesor: 'M.I. ANGEL CESAR GOVANTES SALDIVAR',
       numGpo: 1,
-      horarios: [
-        {
-          start: new Time(7, 0),
-          end: new Time(9, 0),
-          day: daysEnum.MAR,
-        },
-        {
-          start: new Time(7, 0),
-          end: new Time(9, 0),
-          day: daysEnum.JUE,
-        },
+      horarios: [{
+        start: new Time(7, 0),
+        end: new Time(9, 0),
+        day: daysEnum.MAR,
+      },
+      {
+        start: new Time(7, 0),
+        end: new Time(9, 0),
+        day: daysEnum.JUE,
+      },
       ],
     },
     {
       profesor: 'M.I.A LUIS ARENAS HERNANDEZ',
       numGpo: 2,
-      horarios: [
-        {
-          start: new Time(14, 0),
-          end: new Time(16, 0),
-          day: daysEnum.MAR,
-        },
-        {
-          start: new Time(14, 0),
-          end: new Time(16, 0),
-          day: daysEnum.JUE,
-        },
+      horarios: [{
+        start: new Time(14, 0),
+        end: new Time(16, 0),
+        day: daysEnum.MAR,
+      },
+      {
+        start: new Time(14, 0),
+        end: new Time(16, 0),
+        day: daysEnum.JUE,
+      },
       ],
     },
   ],

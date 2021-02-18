@@ -1,76 +1,130 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs');
+const puppeteer = require('puppeteer'); // For web scrapping
+const fs = require('fs'); // For creating file
 
-const url = 'https://www.ssa.ingenieria.unam.mx/horarios.html';
+// Object to read user input
+// const readline = require('readline').createInterface({
+//   input: process.stdin,
+//   output: process.stdout
+// });
 
-const clave = process.argv[2];
+// Second argument from CLI represents the KEY to search in the inputbox
+// at the webpage
+// const key = process.argv[2];
 
-if (!clave || isNaN(parseInt(clave))) {
-  console.error('Please enter a numeric amount as an argument');
-  process.exit(1);
-}
+// Check if the key exist and if it is a number
+// if (!key || isNaN(parseInt(key))) {
+//   console.error('Please enter a numeric amount as an argument');
+//   process.exit(1);
+// }
 
-(async () => {
-  // FOR DEBUGGING
-  // const browser = await puppeteer.launch({ headless: false, slowMo: 200 });
+/** ****************************************************************************
+**********             Constants for the subject table                *********
+***************************************************************************** */
+
+const KEY = 0;
+const NUMGPO = 1;
+const PROFESOR = 2;
+
+const TIPO1 = 3;
+const HORAS1 = 4;
+const DIAS1 = 5;
+
+const SALON1 = -1;
+
+const CUPO = 6;
+const VACANTES = -1;
+
+const TIPO2 = 7;
+const HORAS2 = 8;
+const DIAS2 = 9;
+
+const SALON2 = -1;
+
+/** ****************************************************************************
+**********                   Scrapping main code                      *********
+***************************************************************************** */
+
+const scrapper = async (url, key) => {
+  /**
+   * This first 3 lines instantiate a headless broswer
+   * With the URL argument
+   */
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: 'networkidle2' });
 
-  await page.type('#clave', clave);
+  /**
+   * The page has an input box
+   * We write the KEY declare above
+   * And click in search button
+   */
+  await page.type('#clave', key);
   await page.click('#buscar');
+  // Waiting for the NEW selectors with the result table
+  await page.waitForSelector(`#resultado${key}`);
 
-  await page.waitForSelector(`#resultado${clave}`);
-  const data = await page.evaluate((clave) => {
-    const title = document.getElementById(clave).querySelector('div .col-10')
-      .textContent;
-    const grupos = Array.from(
-      document.querySelectorAll('table > tbody'),
-    ).map((el) => Array.from(el.querySelectorAll('tr > td')).map((ell) => ell.textContent));
+  const data = await page.evaluate((key) => {
+    const [claveMateria, nombreMateria] = document.getElementById(key)
+      .querySelector('div .col-10')
+      .textContent.split('-');
 
-    const [claveMateria, nombreMateria] = title.split('-');
+    const groups = Array.from(document.querySelectorAll('table > tbody'))
+      .map((el) => Array.from(el.querySelectorAll('tr > td')).map((ell) => ell.textContent));
 
     return {
-      clave: parseInt(claveMateria.trim(), 10),
-      materia: nombreMateria.trim(),
-      grupos: grupos.filter((gpo) => gpo.length !== 0),
+      key: parseInt(claveMateria.trim(), 10),
+      subject: nombreMateria.trim(),
+      groups: groups.filter((gpo) => gpo.length !== 0),
     };
-  }, clave);
+  }, key);
 
+  await browser.close();
+  return data;
+};
+
+/** ****************************************************************************
+**********                   Processing rowdata                       *********
+***************************************************************************** */
+
+const processData = ({ key, subject, groups }) => {
   let grupos = [];
 
-  data.grupos.forEach((gpo) => {
+  groups.forEach((gpo) => {
     const grupo = {
-      clave: parseInt(gpo[0]),
-      numGpo: gpo[1],
-      profesor: gpo[2],
-      tipo1: gpo[3],
-      horas1: gpo[4],
-      dias1: gpo[5],
-      salon1: gpo[6],
-      cupo: gpo[7],
-      vacantes1: gpo[8],
+      clave: parseInt(gpo[KEY]),
+      numGpo: gpo[NUMGPO],
+      profesor: gpo[PROFESOR],
+
+      tipo1: gpo[TIPO1],
+      horas1: gpo[HORAS1],
+      dias1: gpo[DIAS1],
+      salon1: gpo[SALON1],
+
+      cupo: gpo[CUPO],
+      vacantes: gpo[VACANTES],
     };
 
     if (gpo.length > 9) {
-      if (gpo[8] === 'T' || gpo[8] === 'L') {
-        grupo.tipo2 = gpo[8];
-        grupo.horas2 = gpo[8];
-        grupo.dias2 = gpo[910];
+      if (gpo[TIPO2] === 'T' || gpo[TIPO2] === 'L') {
+        grupo.tipo2 = gpo[TIPO2];
+        grupo.horas2 = gpo[HORAS2];
+        grupo.dias2 = gpo[DIAS2];
         // grupos.salon2 = gpo[10];
       } else {
-        grupo.tipo2 = gpo[3];
-        grupo.horas2 = gpo[8];
-        grupo.dias2 = gpo[9];
+        grupo.tipo2 = gpo[TIPO2];
+        grupo.horas2 = gpo[HORAS2];
+        grupo.dias2 = gpo[DIAS2];
       }
     }
     grupos.push(grupo);
   });
 
-  grupos = grupos.filter((gpo) => gpo.clave === data.clave);
+  // Taking just the groups that match with the given key
+  grupos = grupos.filter((gpo) => gpo.clave === key);
 
-  // console.log(grupos);
-  // process.exit(1);
+  console.log(`Materia: ${subject}`);
+  console.log(`Clave: ${key}`);
+  console.log(grupos);
 
   const groupsWithSchedule = [];
 
@@ -117,12 +171,14 @@ if (!clave || isNaN(parseInt(clave))) {
     });
   });
 
-  const materia = {
-    clave: data.clave,
-    materia: data.materia,
+  return {
+    clave: key,
+    materia: subject,
     grupos: groupsWithSchedule,
   };
+};
 
+const buildFile = (materia) => {
   let text = `import Time from '../time';
 import daysEnum from '../days';
 
@@ -163,6 +219,61 @@ export default m${materia.clave};`;
     }
     console.log(`m${materia.clave}.js was created`);
   });
+};
 
-  await browser.close();
+/** ****************************************************************************
+**********                     Confirm dialog                         *********
+***************************************************************************** */
+/**
+ * CURRENTLY NOT WORKING because asycn problems
+ */
+// const confirmDialog =  () => {
+//   readline.question('Es correcto? (y/n)', opcion => {
+//     readline.close();
+//     if (opcion == 'n' ) {
+//       process.exit(1);
+//     }
+//   });
+// }
+
+/** ****************************************************************************
+**********                   Async call (main)                        *********
+***************************************************************************** */
+
+(async () => {
+  const url = 'https://www.ssa.ingenieria.unam.mx/horarios.html';
+
+  const mySubjectKeys = [
+    1858, // Embebidos
+    1867, // Arquitectura
+    6867, // Lab. Arquitectura
+    2930, // Criptografia
+    2933, // Mineria datos
+    2932, // Analisis de Textos
+    2944, // Admin TIC
+    1916, // Procesamiento img
+    2931, // Negocios y web
+    2950, // Proc lenguaje
+    2952, // Proyecto de investig
+    2958, // Temas III (CCNP)
+    2957, // Temas II (Linux, Guerrero)
+    958, // Temas selectos (BD)
+    757, // Reconocimiento de patrones
+    1780,
+    1592,
+    879,
+    6592,
+    5879,
+    558,
+    5558,
+  ];
+
+  for (const key of mySubjectKeys) {
+    console.log('============================================================');
+    console.log(`Extracting data from:    ${key}`);
+    console.log('============================================================');
+    const rowdata = await scrapper(url, `${key}`);
+    const subject = processData(rowdata);
+    buildFile(subject);
+  }
 })();
