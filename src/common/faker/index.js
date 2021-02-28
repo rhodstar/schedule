@@ -21,6 +21,10 @@ import m6592 from './m6592';
 import m5879 from './m5879';
 import m558 from './m558';
 import m5558 from './m5558';
+import m1997 from './m1997';
+import m6997 from './m6997';
+import m1999 from './m1999';
+import m6999 from './m6999';
 
 export default [
   m1858, // Embebidos
@@ -45,4 +49,8 @@ export default [
   m5879,
   m558,
   m5558,
+  m1997,
+  m6997,
+  m1999,
+  m6999,
 ];

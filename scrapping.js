@@ -244,6 +244,7 @@ export default m${materia.clave};`;
   const url = 'https://www.ssa.ingenieria.unam.mx/horarios.html';
 
   const mySubjectKeys = [
+    /*
     1858, // Embebidos
     1867, // Arquitectura
     6867, // Lab. Arquitectura
@@ -259,13 +260,18 @@ export default m${materia.clave};`;
     2957, // Temas II (Linux, Guerrero)
     958, // Temas selectos (BD)
     757, // Reconocimiento de patrones
-    1780,
     1592,
     879,
     6592,
     5879,
     558,
     5558,
+    1997,
+    6997,
+    1999,
+    6999,
+    */
+    1780,
   ];
 
   for (const key of mySubjectKeys) {
@@ -274,6 +280,7 @@ export default m${materia.clave};`;
     console.log('============================================================');
     const rowdata = await scrapper(url, `${key}`);
     const subject = processData(rowdata);
+    exit(1)
     buildFile(subject);
   }
 })();
