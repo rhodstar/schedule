@@ -6,21 +6,6 @@ const m1780 = {
   materia: 'ACUSTICA Y OPTICA',
   grupos: [
     {
-      profesor: 'DRA. MARIA BEATRIZ DE LA MORA MOJICA',
-      numGpo: 1,
-      horarios: [{
-        start: new Time(7, 0),
-        end: new Time(9, 0),
-        day: daysEnum.LUN,
-      },
-      {
-        start: new Time(7, 0),
-        end: new Time(9, 0),
-        day: daysEnum.MIE,
-      },
-      ],
-    },
-    {
       profesor: 'MC. LUIS ENRIQUE QUINTANAR CORTES',
       numGpo: 2,
       horarios: [{
@@ -33,12 +18,22 @@ const m1780 = {
         end: new Time(13, 0),
         day: daysEnum.JUE,
       },
+      {
+        start: new Time(11, 0),
+        end: new Time(13, 0),
+        day: daysEnum.MIE,
+      },
       ],
     },
     {
       profesor: 'DR. HERIBERTO DE JESUS AGUILAR JUAREZ',
       numGpo: 3,
       horarios: [{
+        start: new Time(13, 0),
+        end: new Time(15, 0),
+        day: daysEnum.VIE,
+      },
+      {
         start: new Time(13, 0),
         end: new Time(15, 0),
         day: daysEnum.LUN,
@@ -63,12 +58,22 @@ const m1780 = {
         end: new Time(17, 0),
         day: daysEnum.JUE,
       },
+      {
+        start: new Time(15, 0),
+        end: new Time(17, 0),
+        day: daysEnum.MIE,
+      },
       ],
     },
     {
       profesor: 'DR. FELIPE ARTURO MACHUCA TZILI',
       numGpo: 5,
       horarios: [{
+        start: new Time(17, 0),
+        end: new Time(19, 0),
+        day: daysEnum.MIE,
+      },
+      {
         start: new Time(17, 0),
         end: new Time(19, 0),
         day: daysEnum.MAR,
@@ -86,7 +91,37 @@ const m1780 = {
       horarios: [{
         start: new Time(19, 0),
         end: new Time(21, 0),
+        day: daysEnum.MIE,
+      },
+      {
+        start: new Time(19, 0),
+        end: new Time(21, 0),
+        day: daysEnum.VIE,
+      },
+      {
+        start: new Time(19, 0),
+        end: new Time(21, 0),
         day: daysEnum.LUN,
+      },
+      ],
+    },
+    {
+      profesor: 'DRA. MARIA BEATRIZ DE LA MORA MOJICA',
+      numGpo: 1,
+      horarios: [{
+        start: new Time(7, 0),
+        end: new Time(9, 0),
+        day: daysEnum.VIE,
+      },
+      {
+        start: new Time(7, 0),
+        end: new Time(9, 0),
+        day: daysEnum.LUN,
+      },
+      {
+        start: new Time(7, 0),
+        end: new Time(9, 0),
+        day: daysEnum.MIE,
       },
       ],
     },

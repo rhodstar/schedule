@@ -32,13 +32,18 @@ const DIAS1 = 5;
 const SALON1 = -1;
 
 const CUPO = 6;
-const VACANTES = -1;
+// const VACANTES = -1;
+const VACANTES = 7;
 
-const TIPO2 = 7;
+// const TIPO2 = 7;
+// const HORAS2 = 8;
+// const DIAS2 = 9;
+
+const TIPO2 = -1;
 const HORAS2 = 8;
 const DIAS2 = 9;
 
-const SALON2 = -1;
+// const SALON2 = -1;
 
 /** ****************************************************************************
 **********                   Scrapping main code                      *********
@@ -280,7 +285,6 @@ export default m${materia.clave};`;
     console.log('============================================================');
     const rowdata = await scrapper(url, `${key}`);
     const subject = processData(rowdata);
-    exit(1)
     buildFile(subject);
   }
 })();
